@@ -1,7 +1,25 @@
 import React from "react";
+import styled from "styled-components";
+import Topbar from "./components/Topbar";
+import MovieList from "./components/MovieList";
+import SidebarFilters from "./components/SidebarFilters";
+import SidebarNews from "./components/SidebarNews";
 
-function App() {
-  return <div>hello</div>;
+export default class App extends React.Component {
+  render() {
+    return (
+      <>
+        <Topbar />
+        <Container>
+          <SidebarFilters />
+          <MovieList />
+          <SidebarNews />
+        </Container>
+      </>
+    );
+  }
 }
 
-export default App;
+const Container = styled.div`
+  display: flex;
+`;

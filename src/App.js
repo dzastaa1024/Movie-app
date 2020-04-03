@@ -8,18 +8,34 @@ import GlobalStyle from "./GlobalStyle";
 import * as fetcher from "./fetcher";
 
 export default class App extends React.Component {
+  state = {
+    topRatedMovies: [],
+    popularMovies: []
+  };
+
   async componentDidMount() {
-    const res = await fetcher.fetchTopRatedMovies();
-    console.log(res);
+    const resRated = await fetcher.fetchTopRatedMovies();
+    const resPopular = await fetcher.fetchPopularMovies();
+
+    console.log(resPopular);
+
+    this.setState({
+      topRatedMovies: resRated,
+      popularMovies: resPopular
+    });
   }
 
   render() {
+    const { topRatedMovies, popularMovies } = this.state;
     return (
       <>
         <GlobalStyle />
         <Topbar />
         <SidebarFilters />
-        <MovieList />
+        <MovieList
+          topRatedMovies={topRatedMovies}
+          popularMovies={popularMovies}
+        />
         <SidebarNews />
       </>
     );

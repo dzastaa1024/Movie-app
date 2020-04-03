@@ -10,8 +10,8 @@ export default class SidebarNews extends React.Component {
 const Wrapper = styled.div`
   border: 1px solid black;
   width: 20rem;
-  height: 100%;
   position: fixed;
-  right: 0;
   top: 20rem;
+  bottom: 0;
+  right: 0;
 `;

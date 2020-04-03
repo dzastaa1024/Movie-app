@@ -21,6 +21,13 @@ const GlobalStyle = createGlobalStyle`
 		color: rgb(64, 78, 95);
   }
 
+
+#root {
+	height: 100vh;
+	overflow : hidden;
+	}
+
+
 	a {
 		text-decoration: none;
 	}

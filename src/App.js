@@ -4,22 +4,24 @@ import Topbar from "./components/Topbar";
 import MovieList from "./components/MovieList";
 import SidebarFilters from "./components/SidebarFilters";
 import SidebarNews from "./components/SidebarNews";
+import GlobalStyle from "./GlobalStyle";
+import * as fetcher from "./fetcher";
 
 export default class App extends React.Component {
+  async componentDidMount() {
+    const res = await fetcher.fetchTopRatedMovies();
+    console.log(res);
+  }
+
   render() {
     return (
       <>
+        <GlobalStyle />
         <Topbar />
-        <Container>
-          <SidebarFilters />
-          <MovieList />
-          <SidebarNews />
-        </Container>
+        <SidebarFilters />
+        <MovieList />
+        <SidebarNews />
       </>
     );
   }
 }
-
-const Container = styled.div`
-  display: flex;
-`;

@@ -3,12 +3,14 @@ import styled from "styled-components";
 
 export default class Topbar extends React.Component {
   render() {
-    return <Wrapper></Wrapper>;
+    return <Wrapper>Topbar</Wrapper>;
   }
 }
 
 const Wrapper = styled.div`
   border: 1px solid black;
-  width: 100vw;
-  height: 20vh;
+  width: 100%;
+  height: 20rem;
+  position: fixed;
+  background: black;
 `;

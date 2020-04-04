@@ -27,8 +27,10 @@ const Image = styled.img`
 const Title = styled.h1`
   font-size: 1.5rem;
   padding-top: 2rem;
+  color: #fff;
 `;
 
 const Average = styled.p`
   padding-top: 1rem;
+  color: #fff;
 `;

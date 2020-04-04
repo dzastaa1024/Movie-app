@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   border: 1px solid black;
   width: 20rem;
   position: fixed;
-  top: 20rem;
+  top: 10rem;
   bottom: 0;
   left: 0;
 `;

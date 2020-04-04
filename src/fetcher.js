@@ -2,14 +2,6 @@ import axios from "axios";
 
 const baseUrl = "https://api.themoviedb.org";
 
-export const fetchMovies = async keyword => {
-  const url = `${baseUrl}/3/search/movie?api_key=${process.env.REACT_APP_APIkey}&query=${keyword}`;
-
-  const res = await axios.get(url);
-
-  return res.data;
-};
-
 export const fetchTopRatedMovies = async () => {
   const url = `${baseUrl}/3/movie/top_rated?api_key=${process.env.REACT_APP_APIkey}`;
 
@@ -24,4 +16,12 @@ export const fetchPopularMovies = async () => {
   const res = await axios.get(url);
 
   return res.data.results;
+};
+
+export const fetchMovies = async keyword => {
+  const url = `${baseUrl}/3/search/movie?api_key=${process.env.REACT_APP_APIkey}&query=${keyword}`;
+
+  const res = await axios.get(url);
+
+  return res.data;
 };

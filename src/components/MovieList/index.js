@@ -4,7 +4,7 @@ import MovieItem from "../MovieItem";
 
 export default class MovieList extends React.Component {
   render() {
-    const { topRatedMovies, popularMovies } = this.props;
+    const { topRatedMovies, popularMovies, allMovies } = this.props;
 
     return (
       <Wrapper>
@@ -23,6 +23,11 @@ export default class MovieList extends React.Component {
             if (i > 3) {
               return;
             }
+            return <MovieItem movie={movie} key={movie.id} />;
+          })}
+        </List>
+        <List>
+          {allMovies.map(movie => {
             return <MovieItem movie={movie} key={movie.id} />;
           })}
         </List>

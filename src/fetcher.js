@@ -18,7 +18,7 @@ export const fetchPopularMovies = async () => {
   return res.data.results;
 };
 
-export const fetchMovies = async keyword => {
+export const fetchMoviesByKeyword = async keyword => {
   const url = `${baseUrl}/3/search/movie?api_key=${process.env.REACT_APP_APIkey}&query=${keyword}`;
 
   const res = await axios.get(url);

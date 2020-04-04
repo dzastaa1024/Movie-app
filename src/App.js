@@ -10,14 +10,14 @@ import * as fetcher from "./fetcher";
 export default class App extends React.Component {
   state = {
     topRatedMovies: [],
-    popularMovies: []
+    popularMovies: [],
+    keyword: "",
+    allMovies: []
   };
 
   async componentDidMount() {
     const resRated = await fetcher.fetchTopRatedMovies();
     const resPopular = await fetcher.fetchPopularMovies();
-
-    console.log(resPopular);
 
     this.setState({
       topRatedMovies: resRated,
@@ -25,16 +25,36 @@ export default class App extends React.Component {
     });
   }
 
+  async searchMovies(keyword) {
+    const resAllMovies = await fetcher.fetchMoviesByKeyword(keyword);
+    console.log(resAllMovies);
+    this.setState({
+      allMovies: resAllMovies.results
+    });
+  }
+
+  handleChange = e => {
+    const { name, value } = e.target;
+
+    this.setState({
+      [name]: value
+    });
+
+    this.searchMovies(value);
+  };
+
   render() {
-    const { topRatedMovies, popularMovies } = this.state;
+    console.log(this.state.allMovies);
+    const { topRatedMovies, popularMovies, keyword, allMovies } = this.state;
     return (
       <>
         <GlobalStyle />
-        <Topbar />
+        <Topbar handleChange={this.handleChange} keyword={keyword} />
         <SidebarFilters />
         <MovieList
           topRatedMovies={topRatedMovies}
           popularMovies={popularMovies}
+          allMovies={allMovies}
         />
         <SidebarNews />
       </>

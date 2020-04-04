@@ -4,13 +4,14 @@ import TopBarList from "../TopBarList";
 
 export default class Topbar extends React.Component {
   render() {
+    const { handleChange, keyword } = this.props;
     return (
       <Wrapper>
         <LeftWrapper>
           <Icon></Icon>
         </LeftWrapper>
         <MiddleWrapper>
-          <Input />
+          <Input value={keyword} onChange={handleChange} name="keyword" />
         </MiddleWrapper>
         <RightWrapper>
           <TopBarList />

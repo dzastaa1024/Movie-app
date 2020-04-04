@@ -1,12 +1,13 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const MovieItem = ({ movie }) => {
+const MovieItem = ({ movie, sidebarNews }) => {
   return (
-    <Item>
+    <Item sidebarNews={sidebarNews}>
       <Image src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} />
-      <Title>{movie.title}</Title>
-      <Average>{movie.vote_average}</Average>
+      <Title sidebarNews>{movie.title}</Title>
+      {!sidebarNews && <Average>{movie.vote_average}</Average>}
+      <ReleaseDate sidebarNews>{movie.release_date}</ReleaseDate>
     </Item>
   );
 };
@@ -16,7 +17,22 @@ export default MovieItem;
 const Item = styled.li`
   display: flex;
   flex-direction: column;
-  margin-right: auto;
+
+  &:not(:last-child) {
+    margin-right: 2.5rem;
+  }
+
+  ${props => {
+    console.log("!", props);
+    return (
+      props.sidebarNews &&
+      css`
+      &:not(:last-child) {
+    margin-right: 0;
+  }
+    `
+    );
+  }}
 `;
 
 const Image = styled.img`
@@ -28,9 +44,29 @@ const Title = styled.h1`
   font-size: 1.5rem;
   padding-top: 2rem;
   color: #fff;
+
+  ${props =>
+    props.sidebarNews &&
+    css`
+      font-size: 1.5rem;
+    `}
 `;
 
 const Average = styled.p`
   padding-top: 1rem;
   color: #fff;
+`;
+
+const ReleaseDate = styled.p`
+  display: none;
+
+  ${props =>
+    props.sidebarNews &&
+    css`
+      display: block;
+      font-size: 1.5rem;
+      color: white;
+      padding: 1rem 0;
+      font-size: 1rem;
+    `}
 `;

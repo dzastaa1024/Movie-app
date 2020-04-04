@@ -12,16 +12,19 @@ export default class App extends React.Component {
     topRatedMovies: [],
     popularMovies: [],
     keyword: "",
-    allMovies: []
+    allMovies: [],
+    upComingMovies: []
   };
 
   async componentDidMount() {
     const resRated = await fetcher.fetchTopRatedMovies();
     const resPopular = await fetcher.fetchPopularMovies();
+    const resUpComing = await fetcher.fetchMoviesUpcoming();
 
     this.setState({
       topRatedMovies: resRated,
-      popularMovies: resPopular
+      popularMovies: resPopular,
+      upComingMovies: resUpComing
     });
   }
 
@@ -44,8 +47,14 @@ export default class App extends React.Component {
   };
 
   render() {
-    console.log(this.state.allMovies);
-    const { topRatedMovies, popularMovies, keyword, allMovies } = this.state;
+    const {
+      topRatedMovies,
+      popularMovies,
+      keyword,
+      allMovies,
+      upComingMovies
+    } = this.state;
+
     return (
       <>
         <GlobalStyle />
@@ -56,7 +65,7 @@ export default class App extends React.Component {
           popularMovies={popularMovies}
           allMovies={allMovies}
         />
-        <SidebarNews />
+        <SidebarNews upComingMovies={upComingMovies} />
       </>
     );
   }

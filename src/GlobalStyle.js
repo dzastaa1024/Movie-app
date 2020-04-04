@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
 		font-size: 1.4rem;
 		font-family: "Lato", sans-serif;
 		line-height: 1.3;
-		background-color: #f6f7f9;
+		background-color: black;
 		color: rgb(64, 78, 95);
   }
 

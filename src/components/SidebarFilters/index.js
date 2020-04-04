@@ -9,6 +9,7 @@ export default class SidebarFilters extends React.Component {
 
 const Wrapper = styled.div`
   border: 1px solid black;
+  background-color: black;
   width: 20rem;
   position: fixed;
   top: 10rem;

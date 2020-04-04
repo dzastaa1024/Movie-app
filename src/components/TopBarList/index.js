@@ -1,28 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 
+const menuItems = [
+  { btnText: "Movies", to: "/" },
+  { btnText: "TV Shows", to: "/" },
+  { btnText: "WatchList", to: "/" }
+];
+
 const TopBarList = ({ movie }) => {
   return (
-    <List>
-      <Item>
-        <Movies>Movies</Movies>
-      </Item>
-      <Item>
-        <TVShows>TV Shows</TVShows>
-      </Item>
-      <Item>
-        <WatchList>WatchList</WatchList>
-      </Item>
-      <Item>
+    <Menu>
+      {menuItems.map(menuItem => (
+        <MenuItem>
+          <MenuItemValue href={menuItem.to}>{menuItem.btnText}</MenuItemValue>
+        </MenuItem>
+      ))}
+      <MenuItem>
         <Picture></Picture>
-      </Item>
-    </List>
+      </MenuItem>
+    </Menu>
   );
 };
 
 export default TopBarList;
 
-const List = styled.ul`
+const Menu = styled.ul`
   list-style-type: none;
   display: flex;
   justify-content: space-around;
@@ -30,13 +32,15 @@ const List = styled.ul`
   width: 100%;
 `;
 
-const Item = styled.li``;
+const MenuItem = styled.li``;
 
-const Movies = styled.a``;
+const MenuItemValue = styled.a`
+  color: grey;
 
-const TVShows = styled.a``;
-
-const WatchList = styled.a``;
+  &:hover {
+    color: white;
+  }
+`;
 
 const Picture = styled.div`
   width: 3rem;

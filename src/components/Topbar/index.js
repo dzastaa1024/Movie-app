@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import TopBarList from "../TopBarList";
+import CameraLogo from "../../img/camera.png";
 
 export default class Topbar extends React.Component {
   render() {
@@ -8,10 +9,15 @@ export default class Topbar extends React.Component {
     return (
       <Wrapper>
         <LeftWrapper>
-          <Icon></Icon>
+          <Icon src={CameraLogo}></Icon>
         </LeftWrapper>
         <MiddleWrapper>
-          <Input value={keyword} onChange={handleChange} name="keyword" />
+          <Input
+            value={keyword}
+            onChange={handleChange}
+            name="keyword"
+            placeholder="Search any movies or tv shows"
+          />
         </MiddleWrapper>
         <RightWrapper>
           <TopBarList />
@@ -28,27 +34,35 @@ const Wrapper = styled.div`
   position: fixed;
   display: flex;
   justify-content: space-between;
-  padding: 2rem;
+  padding: 0 2rem;
   align-items: center;
+  background-color: black;
 `;
 
 const LeftWrapper = styled.div`
-  width: 65%;
+  flex: 0 0 6.5rem;
 `;
 
 const Icon = styled.img`
-  width: 4rem;
-  height: 4rem;
-  border: 1px solid black;
+  width: 6rem;
+  height: 6rem;
 `;
 
 const MiddleWrapper = styled.div`
-  width: 65%;
+  flex: 0 0 10rem;
+  margin-left: auto;
 `;
 
 const Input = styled.input`
   width: 35rem;
-  height: 3rem;
+  height: 3.4rem;
+  border-radius: 20px;
+  border: none;
+  background-color: #17161f;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 100;
+  color: white;
 `;
 
 const RightWrapper = styled.div`

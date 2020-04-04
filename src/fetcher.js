@@ -25,3 +25,13 @@ export const fetchMoviesByKeyword = async keyword => {
 
   return res.data;
 };
+
+export const fetchMoviesUpcoming = async () => {
+  const url = `${baseUrl}/3/movie/upcoming?api_key=${process.env.REACT_APP_APIkey}`;
+
+  const res = await axios.get(url);
+
+  return res.data.results;
+};
+
+//

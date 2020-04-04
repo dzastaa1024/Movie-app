@@ -60,17 +60,16 @@ export default class MovieList extends React.Component {
 }
 
 const Wrapper = styled.div`
-  border: 1px solid red;
+  border-top-left-radius: 40px;
   width: calc(100% - 2 * 200px);
   height: calc(100% - 100px);
   margin-left: 20rem;
   overflow-y: scroll;
   margin-top: 10rem;
   overflow-x: hidden;
-  padding: 1rem;
-  padding-left: 5rem;
-  padding-top: 5rem;
+  padding: 3rem;
   background-color: #18171f;
+  overflow: hidden;
 `;
 
 const List = styled.ul`

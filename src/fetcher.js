@@ -34,4 +34,26 @@ export const fetchMoviesUpcoming = async () => {
   return res.data.results;
 };
 
-//
+export const fetchTVShowsByKeyword = async tvShows => {
+  const url = `${baseUrl}/3/search/movie?api_key=${process.env.REACT_APP_APIkey}&query=${tvShows}`;
+
+  const res = await axios.get(url);
+
+  return res.data.results;
+};
+
+export const fetchTVShowsPopular = async () => {
+  const url = `${baseUrl}/3/tv/popular?api_key=${process.env.REACT_APP_APIkey}`;
+
+  const res = await axios.get(url);
+
+  return res.data.results;
+};
+
+export const fetchAllMoviesAndTvShows = async keyword => {
+  const url = `${baseUrl}/3/search/multi?api_key=${process.env.REACT_APP_APIkey}&query=${keyword}`;
+
+  const res = await axios.get(url);
+
+  return res.data.results;
+};

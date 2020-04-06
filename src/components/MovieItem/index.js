@@ -17,22 +17,8 @@ export default MovieItem;
 const Item = styled.li`
   display: flex;
   flex-direction: column;
-
-  &:not(:last-child) {
-    margin-right: 2.5rem;
-  }
-
-  ${props => {
-    console.log("!", props);
-    return (
-      props.sidebarNews &&
-      css`
-      &:not(:last-child) {
-    margin-right: 0;
-  }
-    `
-    );
-  }}
+  flex: 0 1 25%;
+  padding: 0 2rem;
 `;
 
 const Image = styled.img`

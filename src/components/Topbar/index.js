@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import TopBarList from "../TopBarList";
 import CameraLogo from "../../img/camera.png";
+import { Link } from "react-router-dom";
 
 export default class Topbar extends React.Component {
   render() {
@@ -9,7 +10,9 @@ export default class Topbar extends React.Component {
     return (
       <Wrapper>
         <LeftWrapper>
-          <Icon src={CameraLogo}></Icon>
+          <Link to={"/"}>
+            <Icon src={CameraLogo}></Icon>
+          </Link>
         </LeftWrapper>
         <MiddleWrapper>
           <Input

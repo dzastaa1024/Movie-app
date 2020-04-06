@@ -13,7 +13,7 @@ export default class SidebarNews extends React.Component {
             if (i > 1) {
               return;
             }
-            return <MovieItem movie={movie} sidebarNews />;
+            return <MovieItem movie={movie} sidebarNews key={movie.id} />;
           })}
         </List>
       </Wrapper>

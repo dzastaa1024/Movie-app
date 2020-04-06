@@ -4,15 +4,35 @@ import MovieItem from "../MovieItem";
 
 export default class MovieList extends React.Component {
   render() {
-    const { topRatedMovies, popularMovies, allMovies } = this.props;
+    const { allMovies, ratedMovies, popularMovies } = this.props;
 
     return (
       <Wrapper>
-        {allMovies.length === 0 && (
-          <div>
+        {allMovies.length > 0 && (
+          <>
+            <Title>Results</Title>
+            <List>
+              {allMovies.map(movie => {
+                //  if (i > 3) {
+                //    return;
+                //  }
+                return (
+                  <MovieItem
+                    movie={movie}
+                    key={movie.id}
+                    title="Weekly Top Rated Movies"
+                  />
+                );
+              })}
+            </List>
+          </>
+        )}
+
+        {ratedMovies && ratedMovies.length > 0 && (
+          <>
             <Title>Weekly Top Rated Movies</Title>
             <List>
-              {topRatedMovies.map((movie, i) => {
+              {ratedMovies.map((movie, i) => {
                 if (i > 3) {
                   return;
                 }
@@ -25,7 +45,12 @@ export default class MovieList extends React.Component {
                 );
               })}
             </List>
-            <Title>Popular Movies</Title>
+          </>
+        )}
+
+        {popularMovies && popularMovies.length > 0 && (
+          <>
+            <Title>Weekly Top Rated Movies</Title>
             <List>
               {popularMovies.map((movie, i) => {
                 if (i > 3) {
@@ -40,41 +65,31 @@ export default class MovieList extends React.Component {
                 );
               })}
             </List>
-          </div>
+          </>
         )}
-
-        <List keyword>
-          {allMovies.map(movie => {
-            return (
-              <MovieItem
-                movie={movie}
-                key={movie.id}
-                title="Weekly Top Rated Movies"
-              />
-            );
-          })}
-        </List>
       </Wrapper>
     );
   }
 }
 
 const Wrapper = styled.div`
-  border-top-left-radius: 40px;
+  /* border-top-left-radius: 40px;
   width: calc(100% - 2 * 200px);
   height: calc(100% - 100px);
   margin-left: 20rem;
-  overflow-y: scroll;
   margin-top: 10rem;
+  top: 10rem;
+  overflow-y: scroll;
   overflow-x: hidden;
   padding: 3rem;
   background-color: #18171f;
-  overflow: hidden;
+  overflow: hidden; */
 `;
 
 const List = styled.ul`
   display: flex;
   margin-bottom: 5rem;
+  flex-wrap: wrap;
 
   ${props =>
     props.keyword &&
@@ -88,4 +103,5 @@ const Title = styled.h1`
   padding-bottom: 2rem;
   padding-top: 2rem;
   color: #fff;
+  padding-left: 2rem;
 `;

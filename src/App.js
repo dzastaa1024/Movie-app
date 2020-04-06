@@ -1,38 +1,29 @@
 import React from "react";
-import styled from "styled-components";
-import Topbar from "./components/Topbar";
-import MovieList from "./components/MovieList";
-import SidebarFilters from "./components/SidebarFilters";
-import SidebarNews from "./components/SidebarNews";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import GlobalStyle from "./GlobalStyle";
 import * as fetcher from "./fetcher";
 
+import Topbar from "./components/Topbar";
+import SidebarFilters from "./components/SidebarFilters";
+import SidebarNews from "./components/SidebarNews";
+import Scroll from "./Scroll";
+
+import MainPage from "./views/MainPage";
+import MoviePage from "./views/MoviePage.js";
+import TvPage from "./views/TvPage";
+import WatchPage from "./views/WatchPage";
+
 export default class App extends React.Component {
   state = {
-    topRatedMovies: [],
-    popularMovies: [],
     keyword: "",
-    allMovies: [],
     upComingMovies: []
   };
 
   async componentDidMount() {
-    const resRated = await fetcher.fetchTopRatedMovies();
-    const resPopular = await fetcher.fetchPopularMovies();
     const resUpComing = await fetcher.fetchMoviesUpcoming();
 
     this.setState({
-      topRatedMovies: resRated,
-      popularMovies: resPopular,
       upComingMovies: resUpComing
-    });
-  }
-
-  async searchMovies(keyword) {
-    const resAllMovies = await fetcher.fetchMoviesByKeyword(keyword);
-    console.log(resAllMovies);
-    this.setState({
-      allMovies: resAllMovies.results
     });
   }
 
@@ -42,29 +33,54 @@ export default class App extends React.Component {
     this.setState({
       [name]: value
     });
-
-    this.searchMovies(value);
   };
 
   render() {
-    const {
-      topRatedMovies,
-      popularMovies,
-      keyword,
-      allMovies,
-      upComingMovies
-    } = this.state;
+    const { keyword, upComingMovies } = this.state;
 
     return (
       <>
         <GlobalStyle />
-        <Topbar handleChange={this.handleChange} keyword={keyword} />
-        <SidebarFilters />
-        <MovieList
-          topRatedMovies={topRatedMovies}
-          popularMovies={popularMovies}
-          allMovies={allMovies}
-        />
+        <Router>
+          <>
+            <Topbar handleChange={this.handleChange} keyword={keyword} />
+            <SidebarFilters />
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Scroll>
+                  <MainPage keyword={keyword} />
+                </Scroll>
+              )}
+            />
+            <Route
+              path="/movies"
+              render={() => (
+                <Scroll>
+                  <MoviePage keyword={keyword} />
+                </Scroll>
+              )}
+            />
+            <Route
+              path="/tvshows"
+              render={() => (
+                <Scroll>
+                  <TvPage keyword={keyword} />
+                </Scroll>
+              )}
+            />
+            <Route
+              path="/watchlists"
+              render={() => (
+                <Scroll>
+                  <WatchPage />
+                </Scroll>
+              )}
+            />
+          </>
+        </Router>
+
         <SidebarNews upComingMovies={upComingMovies} />
       </>
     );

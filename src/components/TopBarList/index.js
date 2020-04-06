@@ -1,19 +1,22 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const menuItems = [
-  { btnText: "Movies", to: "/" },
-  { btnText: "TV Shows", to: "/" },
-  { btnText: "WatchList", to: "/" }
+  { btnText: "Movies", to: "/movies" },
+  { btnText: "TV Shows", to: "/tvshows" },
+  { btnText: "WatchList", to: "/watchlists" }
 ];
 
-const TopBarList = ({ movie }) => {
+const TopBarList = () => {
   return (
     <Menu>
       {menuItems.map(menuItem => (
-        <MenuItem>
-          <MenuItemValue href={menuItem.to}>{menuItem.btnText}</MenuItemValue>
-        </MenuItem>
+        <Link to={menuItem.to} key={menuItem.to}>
+          <MenuItem>
+            <MenuItemValue href={menuItem.to}>{menuItem.btnText}</MenuItemValue>
+          </MenuItem>
+        </Link>
       ))}
       <MenuItem>
         <Picture></Picture>

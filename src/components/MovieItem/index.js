@@ -1,9 +1,9 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-const MovieItem = ({ movie, sidebarNews }) => {
+const MovieItem = ({ movie, sidebarNews, handleClick }) => {
   return (
-    <Item sidebarNews={sidebarNews}>
+    <Item sidebarNews={sidebarNews} onClick={() => handleClick(movie.id)}>
       <Image src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} />
       <Title sidebarNews>{movie.title}</Title>
       {!sidebarNews && <Average>{movie.vote_average}</Average>}

@@ -4,7 +4,7 @@ import MovieItem from "../MovieItem";
 
 export default class MovieList extends React.Component {
   render() {
-    const { allMovies, ratedMovies, popularMovies } = this.props;
+    const { allMovies, ratedMovies, popularMovies, handleClick } = this.props;
 
     return (
       <Wrapper>
@@ -21,6 +21,7 @@ export default class MovieList extends React.Component {
                     movie={movie}
                     key={movie.id}
                     title="Weekly Top Rated Movies"
+                    handleClick={handleClick}
                   />
                 );
               })}
@@ -41,6 +42,7 @@ export default class MovieList extends React.Component {
                     movie={movie}
                     key={movie.id}
                     title="Weekly Top Rated Movies"
+                    handleClick={handleClick}
                   />
                 );
               })}
@@ -61,6 +63,7 @@ export default class MovieList extends React.Component {
                     movie={movie}
                     key={movie.id}
                     title="Weekly Top Rated Movies"
+                    handleClick={handleClick}
                   />
                 );
               })}

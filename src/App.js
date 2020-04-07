@@ -80,8 +80,9 @@ export default class App extends React.Component {
             />
           </>
         </Router>
-
-        <SidebarNews upComingMovies={upComingMovies} />
+        <Scroll>
+          <SidebarNews upComingMovies={upComingMovies} />
+        </Scroll>
       </>
     );
   }

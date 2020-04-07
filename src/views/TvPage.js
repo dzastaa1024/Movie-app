@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import MovieList from "../components/MovieList";
 import * as fetcher from "../fetcher";
 import styled from "styled-components";
+import MovieModal from "../components/Modal/MovieModal";
 
 export default class TvPage extends Component {
   state = {
-    moviesToRender: []
+    moviesToRender: [],
+    isModal: false,
+    clikedMovie: null
   };
 
   async componentDidMount() {
@@ -33,7 +36,28 @@ export default class TvPage extends Component {
     });
   }
 
+  closeModal = () => {
+    this.setState({
+      isModal: false
+    });
+  };
+
+  handleClick = movie => {
+    this.setState({
+      isModal: true,
+      clikedMovie: movie
+    });
+  };
+
   render() {
-    return <MovieList allMovies={this.state.moviesToRender} />;
+    const { clikedMovie, moviesToRender, isModal } = this.state;
+    return (
+      <>
+        <MovieList allMovies={moviesToRender} handleClick={this.handleClick} />;
+        {isModal && (
+          <MovieModal close={this.closeModal} clikedMovie={clikedMovie} />
+        )}
+      </>
+    );
   }
 }

@@ -1,13 +1,22 @@
 import React from "react";
 import styled, { css } from "styled-components";
+//import { AiFillStar } from "react-icons/ai";
+import { Star } from "@styled-icons/boxicons-solid/Star";
 
 const MovieItem = ({ movie, sidebarNews, handleClick }) => {
   return (
-    <Item sidebarNews={sidebarNews} onClick={() => handleClick(movie.id)}>
+    <Item sidebarNews={sidebarNews} onClick={() => handleClick(movie)}>
       <Image src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} />
       <Title sidebarNews>{movie.title}</Title>
-      {!sidebarNews && <Average>{movie.vote_average}</Average>}
-      <ReleaseDate sidebarNews>{movie.release_date}</ReleaseDate>
+      {!sidebarNews && (
+        <Average>
+          {" "}
+          <GoldStar /> {movie.vote_average}
+        </Average>
+      )}
+      {sidebarNews && (
+        <ReleaseDate sidebarNews>{movie.release_date}</ReleaseDate>
+      )}
     </Item>
   );
 };
@@ -40,7 +49,7 @@ const Title = styled.h1`
 
 const Average = styled.p`
   padding-top: 1rem;
-  color: #fff;
+  color: white;
 `;
 
 const ReleaseDate = styled.p`
@@ -55,4 +64,9 @@ const ReleaseDate = styled.p`
       padding: 1rem 0;
       font-size: 1rem;
     `}
+`;
+
+const GoldStar = styled(Star)`
+  color: gold;
+  width: 1.5rem;
 `;

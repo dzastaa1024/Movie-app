@@ -32,14 +32,10 @@ const Dimmer = styled.div`
 
 const ModalBody = styled.div`
   position: relative;
-    width: 90vw;
+    width: 50vw;
     background-color: #fff;
     padding: 2rem;
     align-self: center;
-
-  @media (min-width: 900px) {
-    width: 70rem;
-  }
 `;
 
 const ModalContent = styled.div``;
@@ -49,7 +45,7 @@ const CloseIcon = styled.span`
     height: 3rem;
     line-height: 3rem;
     color: #fff;
-    background: #d9e021;
+    background: #b9c7a9;
     text-align: center;
     border-radius: 5rem;
     position: absolute;

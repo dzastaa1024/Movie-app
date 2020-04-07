@@ -52,7 +52,7 @@ export default class MovieList extends React.Component {
 
         {popularMovies && popularMovies.length > 0 && (
           <>
-            <Title>Weekly Top Rated Movies</Title>
+            <Title>Popular Movies</Title>
             <List>
               {popularMovies.map((movie, i) => {
                 if (i > 3) {
@@ -102,7 +102,6 @@ const List = styled.ul`
 `;
 
 const Title = styled.h1`
-  display: flex;
   padding-bottom: 2rem;
   padding-top: 2rem;
   color: #fff;

@@ -1,10 +1,29 @@
 import React from "react";
 import styled from "styled-components";
 import MovieItem from "../MovieItem";
+import MovieModal from "../Modal/MovieModal";
 
 export default class SidebarNews extends React.Component {
+  state = {
+    isModal: false,
+    clikedMovie: null
+  };
+
+  closeModal = () => {
+    this.setState({
+      isModal: false
+    });
+  };
+
+  handleClick = movie => {
+    this.setState({
+      isModal: true,
+      clikedMovie: movie
+    });
+  };
+
   render() {
-    const { upComingMovies } = this.props;
+    const { upComingMovies, isModal, clikedMovie } = this.props;
     return (
       <Wrapper>
         <List>
@@ -13,9 +32,19 @@ export default class SidebarNews extends React.Component {
             if (i > 1) {
               return;
             }
-            return <MovieItem movie={movie} sidebarNews key={movie.id} />;
+            return (
+              <MovieItem
+                movie={movie}
+                sidebarNews
+                key={movie.id}
+                handleClick={this.handleClick}
+              />
+            );
           })}
         </List>
+        {isModal && (
+          <MovieModal close={this.closeModal} clikedMovie={clikedMovie} />
+        )}
       </Wrapper>
     );
   }
@@ -29,7 +58,7 @@ const Wrapper = styled.div`
   bottom: 0;
   right: 0;
   background-color: #232220;
-  padding: 3rem;
+  padding: 1rem;
 `;
 
 const List = styled.ul`

@@ -10,7 +10,7 @@ export default class MainPage extends Component {
     popularMovies: [],
     allMoviesAndTvShows: [],
     isModal: false,
-    foundMovie: null
+    clikedMovie: null
   };
 
   async componentDidMount() {
@@ -43,17 +43,17 @@ export default class MainPage extends Component {
     });
   };
 
-  handleClick = movieId => {
-    const { allMoviesAndTvShows, popularMovies, moviesToRender } = this.state;
-    const foundMovie = [
-      ...allMoviesAndTvShows,
-      ...popularMovies,
-      ...moviesToRender
-    ].find(movie => movie.id === movieId);
+  handleClick = movie => {
+    // const { allMoviesAndTvShows, popularMovies, moviesToRender } = this.state;
+    // const foundMovie = [
+    //   ...allMoviesAndTvShows,
+    //   ...popularMovies,
+    //   ...moviesToRender
+    // ].find(movie => movie.id === movieId);
 
     this.setState({
       isModal: true,
-      foundMovie: foundMovie
+      clikedMovie: movie
     });
   };
 
@@ -62,10 +62,11 @@ export default class MainPage extends Component {
       moviesToRender,
       popularMovies,
       allMoviesAndTvShows,
-      foundMovie
+      clikedMovie,
+      isModal
     } = this.state;
 
-    console.log(foundMovie);
+    console.log(clikedMovie);
 
     return (
       <>
@@ -75,8 +76,8 @@ export default class MainPage extends Component {
           allMovies={allMoviesAndTvShows}
           handleClick={this.handleClick}
         />
-        {this.state.isModal && (
-          <MovieModal close={this.closeModal} foundMovie={foundMovie} />
+        {isModal && (
+          <MovieModal close={this.closeModal} clikedMovie={clikedMovie} />
         )}
       </>
     );

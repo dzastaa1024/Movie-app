@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import TopBarList from "../TopBarList";
-import CameraLogo from "../../img/camera.png";
 import { Link } from "react-router-dom";
+import * as boxiconsSolid from "@styled-icons/boxicons-solid";
 
 export default class Topbar extends React.Component {
   render() {
@@ -11,7 +11,7 @@ export default class Topbar extends React.Component {
       <Wrapper>
         <LeftWrapper>
           <Link to={"/"}>
-            <Icon src={CameraLogo}></Icon>
+            <CameraIcon />
           </Link>
         </LeftWrapper>
         <MiddleWrapper>
@@ -46,11 +46,6 @@ const LeftWrapper = styled.div`
   flex: 0 0 6.5rem;
 `;
 
-const Icon = styled.img`
-  width: 6rem;
-  height: 6rem;
-`;
-
 const MiddleWrapper = styled.div`
   flex: 0 0 10rem;
   margin-left: auto;
@@ -74,4 +69,10 @@ const RightWrapper = styled.div`
   align-items: center;
   flex-direction: row;
   width: 35%;
+`;
+
+const CameraIcon = styled(boxiconsSolid.CameraMovie)`
+  width: 6rem;
+  height: 6rem;
+  color: #ecff34;
 `;

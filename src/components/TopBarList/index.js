@@ -1,6 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
+import UserModal from "../Modal/UserModal";
+
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { User } from "@styled-icons/boxicons-regular/User";
 
 const menuItems = [
   { btnText: "Movies", to: "/movies" },
@@ -8,24 +11,47 @@ const menuItems = [
   { btnText: "WatchList", to: "/watchlists" }
 ];
 
-const TopBarList = () => {
-  return (
-    <Menu>
-      {menuItems.map(menuItem => (
-        <Link to={menuItem.to} key={menuItem.to}>
-          <MenuItem>
-            <MenuItemValue href={menuItem.to}>{menuItem.btnText}</MenuItemValue>
-          </MenuItem>
-        </Link>
-      ))}
-      <MenuItem>
-        <Picture></Picture>
-      </MenuItem>
-    </Menu>
-  );
-};
+export default class TopBarList extends Component {
+  state = {
+    isModal: false
+  };
 
-export default TopBarList;
+  closeModal = () => {
+    this.setState({
+      isModal: false
+    });
+  };
+
+  handleClick = () => {
+    this.setState({
+      isModal: true
+    });
+  };
+
+  render() {
+    return (
+      <>
+        <Menu>
+          {menuItems.map(menuItem => (
+            <Link to={menuItem.to} key={menuItem.to}>
+              <MenuItem>
+                <MenuItemValue href={menuItem.to}>
+                  {menuItem.btnText}
+                </MenuItemValue>
+              </MenuItem>
+            </Link>
+          ))}
+          <MenuItem>
+            <Picture>
+              <UserIcon onClick={this.handleClick} />
+            </Picture>
+          </MenuItem>
+        </Menu>
+        {this.state.isModal && <UserModal close={this.closeModal} />}
+      </>
+    );
+  }
+}
 
 const Menu = styled.ul`
   list-style-type: none;
@@ -50,4 +76,9 @@ const Picture = styled.div`
   height: 3rem;
   border: 1px solid black;
   border-radius: 50px;
+`;
+
+const UserIcon = styled(User)`
+  color: lightgray;
+  cursor: pointer;
 `;

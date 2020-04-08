@@ -4,6 +4,12 @@ import styled from "styled-components";
 
 export default class WatchPage extends Component {
   render() {
-    return <div>Watch Page</div>;
+    const { addMovieToWatchList } = this.props;
+    console.log("added movie", addMovieToWatchList);
+    return <MovieList addMovieToWatchList={addMovieToWatchList} />;
   }
 }
+
+// addMovieToWatchList.map(movie => (
+//   <MovieItem movie={addMovieToWatchList}></MovieItem>
+// ));

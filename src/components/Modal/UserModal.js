@@ -109,10 +109,6 @@ const IconWrapper = styled.span`
   margin: 1.5rem;
 `;
 
-// const Icon = styled.div``;
-
-// const Name = styled.p``;
-
 const UserDetail = styled(boxiconsSolid.UserDetail)`
   width: 100%;
   height: 100%;

@@ -4,11 +4,17 @@ import MovieItem from "../MovieItem";
 
 export default class MovieList extends React.Component {
   render() {
-    const { allMovies, ratedMovies, popularMovies, handleClick } = this.props;
+    const {
+      allMovies,
+      ratedMovies,
+      popularMovies,
+      handleClick,
+      addMovieToWatchList
+    } = this.props;
 
     return (
       <Wrapper>
-        {allMovies.length > 0 && (
+        {allMovies && allMovies.length > 0 && (
           <>
             <Title>Results</Title>
             <List>
@@ -70,6 +76,23 @@ export default class MovieList extends React.Component {
             </List>
           </>
         )}
+
+        {addMovieToWatchList && addMovieToWatchList.length > 0 && (
+          <>
+            <Title>Your watch list</Title>
+            <List>
+              {addMovieToWatchList.map(movie => {
+                return (
+                  <MovieItem
+                    movie={movie}
+                    key={movie.id}
+                    handleClick={handleClick}
+                  />
+                );
+              })}
+            </List>
+          </>
+        )}
       </Wrapper>
     );
   }
@@ -99,6 +122,10 @@ const List = styled.ul`
     css`
        flex-wrap: wrap;
     `}
+
+  @media (max-width: 750px) {
+    flex-direction: column;
+  }
 `;
 
 const Title = styled.h1`

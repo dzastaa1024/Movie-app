@@ -4,8 +4,13 @@ import styled, { css } from "styled-components";
 import { AiFillStar } from "react-icons/ai";
 
 export default class MovieModal extends Component {
+  addAndClose = clikedMovie => {
+    this.props.handleSubmit(clikedMovie);
+    this.props.close();
+  };
+
   renderContent() {
-    const { clikedMovie } = this.props;
+    const { clikedMovie, handleSubmit, close } = this.props;
     return (
       <Wrapper>
         <Container>
@@ -22,8 +27,10 @@ export default class MovieModal extends Component {
           </RightContent>
         </Container>
         <Action>
-          <ModalBtn>Add to</ModalBtn>
-          <ModalBtn onClick={this.props.close} closing>
+          <ModalBtn onClick={() => this.addAndClose(clikedMovie)}>
+            Add to
+          </ModalBtn>
+          <ModalBtn onClick={close} closing>
             Close
           </ModalBtn>
         </Action>
@@ -95,6 +102,7 @@ const ModalBtn = styled.button`
   background-color: #b9c7a9;
   color: white;
   border: none;
+  cursor: pointer;
 
   ${props =>
     props.closing &&
@@ -102,6 +110,7 @@ const ModalBtn = styled.button`
       color: #b9c7a9;
       border: 1px solid #b9c7a9;
       background-color: white;
+      
     `}
 `;
 

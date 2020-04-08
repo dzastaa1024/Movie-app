@@ -66,8 +66,6 @@ export default class MainPage extends Component {
       isModal
     } = this.state;
 
-    console.log(clikedMovie);
-
     return (
       <>
         <MovieList
@@ -77,7 +75,11 @@ export default class MainPage extends Component {
           handleClick={this.handleClick}
         />
         {isModal && (
-          <MovieModal close={this.closeModal} clikedMovie={clikedMovie} />
+          <MovieModal
+            close={this.closeModal}
+            clikedMovie={clikedMovie}
+            handleSubmit={this.props.handleSubmit}
+          />
         )}
       </>
     );

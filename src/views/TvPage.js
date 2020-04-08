@@ -55,7 +55,11 @@ export default class TvPage extends Component {
       <>
         <MovieList allMovies={moviesToRender} handleClick={this.handleClick} />;
         {isModal && (
-          <MovieModal close={this.closeModal} clikedMovie={clikedMovie} />
+          <MovieModal
+            close={this.closeModal}
+            clikedMovie={clikedMovie}
+            handleSubmit={this.props.handleSubmit}
+          />
         )}
       </>
     );

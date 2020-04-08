@@ -16,7 +16,8 @@ import WatchPage from "./views/WatchPage";
 export default class App extends React.Component {
   state = {
     keyword: "",
-    upComingMovies: []
+    upComingMovies: [],
+    addMovieToWatchList: []
   };
 
   async componentDidMount() {
@@ -35,8 +36,18 @@ export default class App extends React.Component {
     });
   };
 
+  handleSubmit = movie => {
+    const watchList = {
+      moviesAddedToWatchList: this.state.moviesAddedToWatchList
+    };
+
+    this.setState({
+      addMovieToWatchList: this.state.addMovieToWatchList.concat(movie)
+    });
+  };
+
   render() {
-    const { keyword, upComingMovies } = this.state;
+    const { keyword, upComingMovies, addMovieToWatchList } = this.state;
 
     return (
       <>
@@ -50,7 +61,10 @@ export default class App extends React.Component {
               path="/"
               render={() => (
                 <Scroll>
-                  <MainPage keyword={keyword} />
+                  <MainPage
+                    keyword={keyword}
+                    handleSubmit={this.handleSubmit}
+                  />
                 </Scroll>
               )}
             />
@@ -58,7 +72,10 @@ export default class App extends React.Component {
               path="/movies"
               render={() => (
                 <Scroll>
-                  <MoviePage keyword={keyword} />
+                  <MoviePage
+                    keyword={keyword}
+                    handleSubmit={this.handleSubmit}
+                  />
                 </Scroll>
               )}
             />
@@ -66,7 +83,7 @@ export default class App extends React.Component {
               path="/tvshows"
               render={() => (
                 <Scroll>
-                  <TvPage keyword={keyword} />
+                  <TvPage keyword={keyword} handleSubmit={this.handleSubmit} />
                 </Scroll>
               )}
             />
@@ -74,7 +91,7 @@ export default class App extends React.Component {
               path="/watchlists"
               render={() => (
                 <Scroll>
-                  <WatchPage />
+                  <WatchPage addMovieToWatchList={addMovieToWatchList} />
                 </Scroll>
               )}
             />

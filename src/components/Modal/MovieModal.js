@@ -53,7 +53,7 @@ const Image = styled.img``;
 
 const RightContent = styled.div`
   padding-left: 2rem;
-  flex: 2 0 70%;
+  flex: 1 1 70%;
 `;
 
 const Title = styled.h1`

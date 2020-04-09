@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Modal from "./index";
 import styled, { css } from "styled-components";
-import { AiFillStar } from "react-icons/ai";
 
 export default class MovieModal extends Component {
   addAndClose = clikedMovie => {
@@ -10,7 +9,7 @@ export default class MovieModal extends Component {
   };
 
   renderContent() {
-    const { clikedMovie, handleSubmit, close } = this.props;
+    const { clikedMovie, close } = this.props;
     return (
       <Wrapper>
         <Container>

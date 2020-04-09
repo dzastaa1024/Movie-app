@@ -3,6 +3,7 @@ import Modal from "./index";
 import styled, { css } from "styled-components";
 import * as boxiconsSolid from "@styled-icons/boxicons-solid";
 import * as heroiconsSolid from "@styled-icons/heroicons-solid";
+import { Link } from "react-router-dom";
 
 export default class MovieModal extends Component {
   renderContent() {
@@ -17,20 +18,24 @@ export default class MovieModal extends Component {
         <ButtomContent>
           <List>
             <Item>
-              <ItemWrapper>
-                <IconWrapper>
-                  <ListIcon as={heroiconsSolid.ClipboardList} />
-                </IconWrapper>
-                <Name>Watch List</Name>
-              </ItemWrapper>
+              <Link to={"/watchlists"} onClick={this.props.close}>
+                <ItemWrapper>
+                  <IconWrapper>
+                    <ListIcon as={heroiconsSolid.ClipboardList} />
+                  </IconWrapper>
+                  <Name>Watch List</Name>
+                </ItemWrapper>
+              </Link>
             </Item>
             <Item>
-              <ItemWrapper>
-                <IconWrapper>
-                  <ListIcon as={heroiconsSolid.Cog} />
-                </IconWrapper>
-                <Name>Account Settings</Name>
-              </ItemWrapper>
+              <Link to={"/signupform"} onClick={this.props.close}>
+                <ItemWrapper>
+                  <IconWrapper>
+                    <ListIcon as={heroiconsSolid.Cog} />
+                  </IconWrapper>
+                  <Name>Sign Up</Name>
+                </ItemWrapper>
+              </Link>
             </Item>
             <Item>
               <ItemWrapper>

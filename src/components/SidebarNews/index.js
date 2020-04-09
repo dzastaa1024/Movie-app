@@ -1,13 +1,23 @@
 import React from "react";
 import styled from "styled-components";
-import MovieItem from "../MovieItem";
 import MovieModal from "../Modal/MovieModal";
+import MovieList from "../MovieList";
+import * as fetcher from "../../fetcher";
 
 export default class SidebarNews extends React.Component {
   state = {
     isModal: false,
-    clikedMovie: null
+    clikedMovie: null,
+    upComingMovies: []
   };
+
+  async componentDidMount() {
+    const resUpComing = await fetcher.fetchMoviesUpcoming();
+
+    this.setState({
+      upComingMovies: resUpComing
+    });
+  }
 
   closeModal = () => {
     this.setState({
@@ -17,30 +27,22 @@ export default class SidebarNews extends React.Component {
 
   handleClick = movie => {
     this.setState({
-      isModal: true,
-      clikedMovie: movie
+      clikedMovie: movie,
+      isModal: true
     });
   };
 
   render() {
-    const { upComingMovies, isModal, clikedMovie } = this.props;
+    const { clikedMovie, upComingMovies, isModal } = this.state;
     return (
       <Wrapper>
         <List>
           <Title>Upcoming Movies</Title>
-          {upComingMovies.map((movie, i) => {
-            if (i > 1) {
-              return;
-            }
-            return (
-              <MovieItem
-                movie={movie}
-                sidebarNews
-                key={movie.id}
-                handleClick={this.handleClick}
-              />
-            );
-          })}
+          <MovieList
+            allMovies={upComingMovies}
+            handleClick={this.handleClick}
+            sidebarNews
+          />
         </List>
         {isModal && (
           <MovieModal close={this.closeModal} clikedMovie={clikedMovie} />

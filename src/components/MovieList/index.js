@@ -9,7 +9,7 @@ export default class MovieList extends React.Component {
       ratedMovies,
       popularMovies,
       handleClick,
-      addMovieToWatchList
+      sidebarNews
     } = this.props;
 
     return (
@@ -17,7 +17,7 @@ export default class MovieList extends React.Component {
         {allMovies && allMovies.length > 0 && (
           <>
             <Title>Results</Title>
-            <List>
+            <List sidebarNews={sidebarNews}>
               {allMovies.map(movie => {
                 //  if (i > 3) {
                 //    return;
@@ -28,6 +28,7 @@ export default class MovieList extends React.Component {
                     key={movie.id}
                     title="Weekly Top Rated Movies"
                     handleClick={handleClick}
+                    sidebarNews
                   />
                 );
               })}
@@ -76,23 +77,6 @@ export default class MovieList extends React.Component {
             </List>
           </>
         )}
-
-        {addMovieToWatchList && addMovieToWatchList.length > 0 && (
-          <>
-            <Title>Your watch list</Title>
-            <List>
-              {addMovieToWatchList.map(movie => {
-                return (
-                  <MovieItem
-                    movie={movie}
-                    key={movie.id}
-                    handleClick={handleClick}
-                  />
-                );
-              })}
-            </List>
-          </>
-        )}
       </Wrapper>
     );
   }
@@ -121,6 +105,12 @@ const List = styled.ul`
     props.keyword &&
     css`
        flex-wrap: wrap;
+    `}
+
+  ${props =>
+    props.sidebarNews &&
+    css`
+       flex-direction: column;
     `}
 
   @media (max-width: 750px) {

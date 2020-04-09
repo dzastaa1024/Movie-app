@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import GlobalStyle from "./GlobalStyle";
-import * as fetcher from "./fetcher";
 
 import Topbar from "./components/Topbar";
 import SidebarFilters from "./components/SidebarFilters";
@@ -12,21 +11,13 @@ import MainPage from "./views/MainPage";
 import MoviePage from "./views/MoviePage.js";
 import TvPage from "./views/TvPage";
 import WatchPage from "./views/WatchPage";
+import SignUpForm from "./components/SignUpForm";
 
 export default class App extends React.Component {
   state = {
     keyword: "",
-    upComingMovies: [],
     addMovieToWatchList: []
   };
-
-  async componentDidMount() {
-    const resUpComing = await fetcher.fetchMoviesUpcoming();
-
-    this.setState({
-      upComingMovies: resUpComing
-    });
-  }
 
   handleChange = e => {
     const { name, value } = e.target;
@@ -37,17 +28,13 @@ export default class App extends React.Component {
   };
 
   handleSubmit = movie => {
-    const watchList = {
-      moviesAddedToWatchList: this.state.moviesAddedToWatchList
-    };
-
     this.setState({
       addMovieToWatchList: this.state.addMovieToWatchList.concat(movie)
     });
   };
 
   render() {
-    const { keyword, upComingMovies, addMovieToWatchList } = this.state;
+    const { keyword, addMovieToWatchList } = this.state;
 
     return (
       <>
@@ -95,10 +82,18 @@ export default class App extends React.Component {
                 </Scroll>
               )}
             />
+            <Route
+              path="/signupform"
+              render={() => (
+                <Scroll>
+                  <SignUpForm />
+                </Scroll>
+              )}
+            />
           </>
         </Router>
         <Scroll>
-          <SidebarNews upComingMovies={upComingMovies} />
+          <SidebarNews />
         </Scroll>
       </>
     );

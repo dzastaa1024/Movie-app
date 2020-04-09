@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import * as fetcher from "../fetcher";
 import MovieList from "../components/MovieList";
-import styled from "styled-components";
 import MovieModal from "../components/Modal/MovieModal";
 
 export default class MainPage extends Component {

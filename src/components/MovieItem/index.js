@@ -28,11 +28,11 @@ const Item = styled.li`
   flex-direction: column;
   flex: 0 1 25%;
   padding: 0 2rem;
+  cursor: pointer;
 `;
 
 const Image = styled.img`
   width: 100%;
-  height: 100%;
 `;
 
 const Title = styled.h1`

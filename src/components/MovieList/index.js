@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import MovieItem from "../MovieItem";
+import Button from "../Button";
 
 export default class MovieList extends React.Component {
   render() {
@@ -9,6 +10,7 @@ export default class MovieList extends React.Component {
       ratedMovies,
       popularMovies,
       handleClick,
+      handleLoadMore,
       sidebarNews
     } = this.props;
 
@@ -36,7 +38,7 @@ export default class MovieList extends React.Component {
           </>
         )}
 
-        {ratedMovies && ratedMovies.length > 0 && (
+        {!allMovies.length > 0 && ratedMovies && ratedMovies.length > 0 && (
           <>
             <Title>Weekly Top Rated Movies</Title>
             <List>
@@ -57,7 +59,7 @@ export default class MovieList extends React.Component {
           </>
         )}
 
-        {popularMovies && popularMovies.length > 0 && (
+        {!allMovies.length > 0 && popularMovies && popularMovies.length > 0 && (
           <>
             <Title>Popular Movies</Title>
             <List>
@@ -76,6 +78,10 @@ export default class MovieList extends React.Component {
               })}
             </List>
           </>
+        )}
+
+        {allMovies && allMovies.length > 0 && !sidebarNews && (
+          <Button handleLoadMore={handleLoadMore} />
         )}
       </Wrapper>
     );

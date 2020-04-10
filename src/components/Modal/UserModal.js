@@ -104,7 +104,7 @@ const Item = styled.li`
   }
 `;
 
-const ItemWrapper = styled.a`
+const ItemWrapper = styled.span`
   display: block;
   cursor: pointer;
 `;

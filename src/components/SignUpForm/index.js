@@ -22,7 +22,7 @@ export default class SignUpForm extends React.Component {
       <>
         <Wrapper>
           <InputWrapper>
-            <Label for="name">Name</Label>
+            <Label htmlFor="name">Name</Label>
             <Input
               value={name}
               placeholder=""
@@ -34,7 +34,7 @@ export default class SignUpForm extends React.Component {
             />
           </InputWrapper>
           <InputWrapper>
-            <Label for="surname">Surname</Label>
+            <Label htmlFor="surname">Surname</Label>
             <Input
               value={surname}
               placeholder=""
@@ -46,7 +46,7 @@ export default class SignUpForm extends React.Component {
             />
           </InputWrapper>
           <InputWrapper>
-            <Label for="email">Email</Label>
+            <Label htmlFor="email">Email</Label>
             <Input
               value={email}
               placeholder=""
@@ -59,28 +59,41 @@ export default class SignUpForm extends React.Component {
           </InputWrapper>
 
           <InputWrapper>
-            <Label for="dateOfBirth">Date of birth</Label>
+            <Label htmlFor="dateOfBirth">Date of birth</Label>
             <DateOfBirth
               value={dateOfBirth}
               type="date"
               name="dateOfBirth"
               id="dateOfBirth"
+              onChange={() => console.log("")}
             />
           </InputWrapper>
 
           <InputWrapper radiobtn>
-            <Label for="male">
+            <Label htmlFor="male">
               Male
-              <RadioBtn type="radio" value={gender} name="male" id="male" />
+              <RadioBtn
+                type="radio"
+                value={gender}
+                name="male"
+                id="male"
+                onChange={() => console.log("")}
+              />
             </Label>
-            <Label for="female">
+            <Label htmlFor="female">
               Female
-              <RadioBtn type="radio" value="gender" name="female" id="female" />
+              <RadioBtn
+                type="radio"
+                value="gender"
+                name="female"
+                id="female"
+                onChange={() => console.log("")}
+              />
             </Label>
           </InputWrapper>
 
-          <Label for="select">
-            <Select id="select">
+          <Label htmlFor="select">
+            <Select id="select" onChange={() => console.log("")}>
               <Option value="single">Single</Option>
               <Option value="maried">Maried</Option>
             </Select>

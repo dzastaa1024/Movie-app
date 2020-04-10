@@ -9,7 +9,8 @@ export default class MainPage extends Component {
     popularMovies: [],
     allMoviesAndTvShows: [],
     isModal: false,
-    clikedMovie: null
+    clikedMovie: null,
+    page: 0
   };
 
   async componentDidMount() {
@@ -29,12 +30,24 @@ export default class MainPage extends Component {
   }
 
   async searchMovies(keyword) {
-    console.log("keyword", keyword);
     const resAllMovies = await fetcher.fetchAllMoviesAndTvShows(keyword);
     this.setState({
-      allMoviesAndTvShows: resAllMovies
+      allMoviesAndTvShows: resAllMovies,
+      page: this.state.page + 1
     });
   }
+
+  handleLoadMore = async () => {
+    const resAllMovies = await fetcher.fetchAllMoviesAndTvShows(
+      this.props.keyword,
+      this.state.page + 1
+    );
+    console.log(resAllMovies);
+    this.setState({
+      allMoviesAndTvShows: this.state.allMoviesAndTvShows.concat(resAllMovies),
+      page: this.state.page + 1
+    });
+  };
 
   closeModal = () => {
     this.setState({
@@ -86,7 +99,9 @@ export default class MainPage extends Component {
           popularMovies={popularMovies}
           allMovies={movieToRender}
           handleClick={this.handleClick}
+          handleLoadMore={this.handleLoadMore}
         />
+
         {isModal && (
           <MovieModal
             close={this.closeModal}

@@ -63,7 +63,7 @@ const Menu = styled.ul`
 
 const MenuItem = styled.li``;
 
-const MenuItemValue = styled.a`
+const MenuItemValue = styled.span`
   color: grey;
 
   &:hover {

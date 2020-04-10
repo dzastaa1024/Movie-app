@@ -50,8 +50,8 @@ export const fetchTVShowsPopular = async () => {
   return res.data.results;
 };
 
-export const fetchAllMoviesAndTvShows = async keyword => {
-  const url = `${baseUrl}/3/search/multi?api_key=${process.env.REACT_APP_APIkey}&query=${keyword}`;
+export const fetchAllMoviesAndTvShows = async (keyword, page = 1) => {
+  const url = `${baseUrl}/3/search/multi?api_key=${process.env.REACT_APP_APIkey}&query=${keyword}&page=${page}`;
 
   const res = await axios.get(url);
 

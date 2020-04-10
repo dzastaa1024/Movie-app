@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import * as fetcher from "../../fetcher";
 
 export default class SidebarFilters extends React.Component {
@@ -23,7 +23,7 @@ export default class SidebarFilters extends React.Component {
         <Title>Genres</Title>
         <List>
           {genres.map(genre => (
-            <Genre>
+            <Genre key={genre.id}>
               <Label>
                 <Checkbox
                   type="checkbox"
@@ -60,4 +60,7 @@ const Title = styled.h2``;
 
 const Checkbox = styled.input``;
 
-const Label = styled.label``;
+const Label = styled.label`
+width: 100%,
+height: 100%;
+`;

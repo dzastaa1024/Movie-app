@@ -50,14 +50,17 @@ export default class App extends React.Component {
 
   render() {
     const { keyword, addMovieToWatchList, activeFilters } = this.state;
-
+    console.log(activeFilters);
     return (
       <>
         <GlobalStyle />
         <Router>
           <>
             <Topbar handleChange={this.handleChange} keyword={keyword} />
-            <SidebarFilters handleFilter={this.handleFilter} />
+            <SidebarFilters
+              handleFilter={this.handleFilter}
+              activeFilters={activeFilters}
+            />
             <Route
               exact
               path="/"

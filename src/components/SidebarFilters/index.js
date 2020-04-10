@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import * as fetcher from "../../fetcher";
 
 export default class SidebarFilters extends React.Component {
@@ -17,13 +17,22 @@ export default class SidebarFilters extends React.Component {
 
   render() {
     const { genres } = this.state;
-    const { handleFilter } = this.props;
+    const { handleFilter, activeFilters } = this.props;
     return (
       <Wrapper>
         <Title>Genres</Title>
         <List>
           {genres.map(genre => (
-            <Genre onClick={() => handleFilter(genre.id)}>{genre.name}</Genre>
+            <Genre>
+              <Label>
+                <Checkbox
+                  type="checkbox"
+                  onChange={() => handleFilter(genre.id)}
+                  checked={activeFilters.includes(genre.id)}
+                />
+                {genre.name}
+              </Label>
+            </Genre>
           ))}
         </List>
       </Wrapper>
@@ -48,3 +57,7 @@ const Genre = styled.li`
 `;
 
 const Title = styled.h2``;
+
+const Checkbox = styled.input``;
+
+const Label = styled.label``;

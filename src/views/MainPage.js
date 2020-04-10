@@ -67,12 +67,24 @@ export default class MainPage extends Component {
 
     const { activeFilters } = this.props;
 
+    let movieToRender = allMoviesAndTvShows;
+
+    activeFilters.length > 0 &&
+      activeFilters.forEach(filterId => {
+        movieToRender = allMoviesAndTvShows.filter(movie => {
+          return (
+            (movie.genre_ids && movie.genre_ids.includes(filterId)) ||
+            (movie.genre && movie.genre === filterId)
+          );
+        });
+      });
+
     return (
       <>
         <MovieList
           ratedMovies={moviesToRender}
           popularMovies={popularMovies}
-          allMovies={allMoviesAndTvShows}
+          allMovies={movieToRender}
           handleClick={this.handleClick}
         />
         {isModal && (

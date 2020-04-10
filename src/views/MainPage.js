@@ -65,6 +65,8 @@ export default class MainPage extends Component {
       isModal
     } = this.state;
 
+    const { activeFilters } = this.props;
+
     return (
       <>
         <MovieList

@@ -16,7 +16,22 @@ import SignUpForm from "./components/SignUpForm";
 export default class App extends React.Component {
   state = {
     keyword: "",
-    addMovieToWatchList: []
+    addMovieToWatchList: [],
+    activeFilters: []
+  };
+
+  handleFilter = id => {
+    const { activeFilters } = this.state;
+    if (activeFilters.includes(id)) {
+      this.setState({
+        activeFilters: activeFilters.filter(filteredId => filteredId !== id)
+      });
+      return;
+    }
+
+    this.setState({
+      activeFilters: activeFilters.concat(id)
+    });
   };
 
   handleChange = e => {
@@ -34,7 +49,7 @@ export default class App extends React.Component {
   };
 
   render() {
-    const { keyword, addMovieToWatchList } = this.state;
+    const { keyword, addMovieToWatchList, activeFilters } = this.state;
 
     return (
       <>
@@ -42,7 +57,7 @@ export default class App extends React.Component {
         <Router>
           <>
             <Topbar handleChange={this.handleChange} keyword={keyword} />
-            <SidebarFilters />
+            <SidebarFilters handleFilter={this.handleFilter} />
             <Route
               exact
               path="/"
@@ -51,6 +66,7 @@ export default class App extends React.Component {
                   <MainPage
                     keyword={keyword}
                     handleSubmit={this.handleSubmit}
+                    activeFilters={activeFilters}
                   />
                 </Scroll>
               )}

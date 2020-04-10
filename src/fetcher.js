@@ -57,3 +57,11 @@ export const fetchAllMoviesAndTvShows = async keyword => {
 
   return res.data.results;
 };
+
+export const fetchGenre = async () => {
+  const url = `${baseUrl}/3/genre/movie/list?api_key=${process.env.REACT_APP_APIkey}`;
+
+  const res = await axios.get(url);
+
+  return res.data.genres;
+};

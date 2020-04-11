@@ -11,7 +11,8 @@ export default class MovieList extends React.Component {
       popularMovies,
       handleClick,
       handleLoadMore,
-      sidebarNews
+      sidebarNews,
+      isActiveFilter
     } = this.props;
 
     return (
@@ -38,51 +39,58 @@ export default class MovieList extends React.Component {
           </>
         )}
 
-        {!allMovies.length > 0 && ratedMovies && ratedMovies.length > 0 && (
-          <>
-            <Title>Weekly Top Rated Movies</Title>
-            <List>
-              {ratedMovies.map((movie, i) => {
-                if (i > 3) {
-                  return;
-                }
-                return (
-                  <MovieItem
-                    movie={movie}
-                    key={movie.id}
-                    title="Weekly Top Rated Movies"
-                    handleClick={handleClick}
-                  />
-                );
-              })}
-            </List>
-          </>
-        )}
+        {!isActiveFilter &&
+          !allMovies.length > 0 &&
+          ratedMovies &&
+          ratedMovies.length > 0 && (
+            <>
+              <Title>Weekly Top Rated Movies</Title>
+              <List>
+                {ratedMovies.map((movie, i) => {
+                  if (i > 3) {
+                    return;
+                  }
+                  return (
+                    <MovieItem
+                      movie={movie}
+                      key={movie.id}
+                      title="Weekly Top Rated Movies"
+                      handleClick={handleClick}
+                    />
+                  );
+                })}
+              </List>
+            </>
+          )}
 
-        {!allMovies.length > 0 && popularMovies && popularMovies.length > 0 && (
-          <>
-            <Title>Popular Movies</Title>
-            <List>
-              {popularMovies.map((movie, i) => {
-                if (i > 3) {
-                  return;
-                }
-                return (
-                  <MovieItem
-                    movie={movie}
-                    key={movie.id}
-                    title="Weekly Top Rated Movies"
-                    handleClick={handleClick}
-                  />
-                );
-              })}
-            </List>
-          </>
-        )}
+        {!isActiveFilter &&
+          !allMovies.length > 0 &&
+          popularMovies &&
+          popularMovies.length > 0 && (
+            <>
+              <Title>Popular Movies</Title>
+              <List>
+                {popularMovies.map((movie, i) => {
+                  if (i > 3) {
+                    return;
+                  }
+                  return (
+                    <MovieItem
+                      movie={movie}
+                      key={movie.id}
+                      title="Weekly Top Rated Movies"
+                      handleClick={handleClick}
+                    />
+                  );
+                })}
+              </List>
+            </>
+          )}
 
         {allMovies && allMovies.length > 0 && !sidebarNews && (
           <Button handleLoadMore={handleLoadMore} />
         )}
+        {isActiveFilter && <p>masz aktywne filtry 0 rezultatow</p>}
       </Wrapper>
     );
   }

@@ -79,13 +79,13 @@ export default class MainPage extends Component {
       isModal
     } = this.state;
 
-    const { activeFilters } = this.props;
+    const { genreFilters, languageFilters } = this.props;
 
     let movieToRender = allMoviesAndTvShows;
 
-    activeFilters.length > 0 &&
-      activeFilters.forEach(filterId => {
-        movieToRender = allMoviesAndTvShows.filter(movie => {
+    genreFilters.length > 0 &&
+      genreFilters.forEach(filterId => {
+        movieToRender = movieToRender.filter(movie => {
           return (
             (movie.genre_ids && movie.genre_ids.includes(filterId)) ||
             (movie.genre && movie.genre === filterId)
@@ -93,9 +93,20 @@ export default class MainPage extends Component {
         });
       });
 
+    languageFilters.length > 0 &&
+      languageFilters.forEach(filterId => {
+        movieToRender = movieToRender.filter(movie => {
+          return (
+            movie.original_language && movie.original_language === filterId
+          );
+        });
+      });
+
+    console.log(movieToRender);
     return (
       <>
         <MovieList
+          isActiveFilter={!!languageFilters.length || !!genreFilters.length}
           ratedMovies={moviesToRender}
           popularMovies={popularMovies}
           allMovies={movieToRender}

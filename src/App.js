@@ -17,20 +17,22 @@ export default class App extends React.Component {
   state = {
     keyword: "",
     addMovieToWatchList: [],
-    activeFilters: []
+    genreFilters: [],
+    languageFilters: []
   };
 
-  handleFilter = id => {
-    const { activeFilters } = this.state;
-    if (activeFilters.includes(id)) {
+  handleFilter = (id, filterType) => {
+    if (this.state[filterType].includes(id)) {
       this.setState({
-        activeFilters: activeFilters.filter(filteredId => filteredId !== id)
+        [filterType]: this.state[filterType].filter(
+          filteredId => filteredId !== id
+        )
       });
       return;
     }
 
     this.setState({
-      activeFilters: activeFilters.concat(id)
+      [filterType]: this.state[filterType].concat(id)
     });
   };
 
@@ -49,7 +51,12 @@ export default class App extends React.Component {
   };
 
   render() {
-    const { keyword, addMovieToWatchList, activeFilters } = this.state;
+    const {
+      keyword,
+      addMovieToWatchList,
+      genreFilters,
+      languageFilters
+    } = this.state;
 
     return (
       <>
@@ -59,7 +66,8 @@ export default class App extends React.Component {
             <Topbar handleChange={this.handleChange} keyword={keyword} />
             <SidebarFilters
               handleFilter={this.handleFilter}
-              activeFilters={activeFilters}
+              genreFilters={genreFilters}
+              languageFilters={languageFilters}
             />
             <Route
               exact
@@ -69,7 +77,8 @@ export default class App extends React.Component {
                   <MainPage
                     keyword={keyword}
                     handleSubmit={this.handleSubmit}
-                    activeFilters={activeFilters}
+                    genreFilters={genreFilters}
+                    languageFilters={languageFilters}
                   />
                 </Scroll>
               )}

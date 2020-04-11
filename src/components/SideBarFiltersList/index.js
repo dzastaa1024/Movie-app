@@ -5,7 +5,8 @@ const SideBarFiltersList = ({
   filters,
   handleFilter,
   activeFilters,
-  heading
+  heading,
+  filterType
 }) => {
   return (
     <List>
@@ -16,7 +17,7 @@ const SideBarFiltersList = ({
             <CheckboxContainer>
               <HiddenCheckbox
                 checked={activeFilters.includes(filter.id)}
-                onChange={() => handleFilter(filter.id)}
+                onChange={() => handleFilter(filter.id, filterType)}
                 type="checkbox"
               />
               <StyledCheckbox checked={activeFilters.includes(filter.id)}>

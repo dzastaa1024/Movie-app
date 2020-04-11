@@ -21,8 +21,6 @@ export default class SidebarFilters extends React.Component {
 
     const languages = this.mapLanguage(resLanguages);
 
-    console.log("moj res", resLanguages);
-    console.log("moj res", languages);
     this.setState({
       genres: resGenre,
       languages: languages
@@ -31,20 +29,22 @@ export default class SidebarFilters extends React.Component {
 
   render() {
     const { genres, languages } = this.state;
-    const { handleFilter, activeFilters } = this.props;
+    const { handleFilter, genreFilters, languageFilters } = this.props;
     return (
       <Wrapper>
         <SideBarFiltersList
           filters={genres}
           handleFilter={handleFilter}
-          activeFilters={activeFilters}
+          activeFilters={genreFilters}
           heading={"Genres"}
+          filterType="genreFilters"
         />
         <SideBarFiltersList
           filters={languages}
           handleFilter={handleFilter}
-          activeFilters={activeFilters}
+          activeFilters={languageFilters}
           heading={"Languages"}
+          filterType="languageFilters"
         />
       </Wrapper>
     );

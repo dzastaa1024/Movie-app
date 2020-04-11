@@ -17,7 +17,7 @@ export default class SidebarFilters extends React.Component {
 
   render() {
     const { genres } = this.state;
-    const { handleFilter, activeFilters } = this.props;
+    const { handleFilter, activeFilters, checked } = this.props;
     return (
       <Wrapper>
         <Title>Genres</Title>
@@ -25,11 +25,18 @@ export default class SidebarFilters extends React.Component {
           {genres.map(genre => (
             <Genre key={genre.id}>
               <Label>
-                <Checkbox
-                  type="checkbox"
-                  onChange={() => handleFilter(genre.id)}
-                  checked={activeFilters.includes(genre.id)}
-                />
+                <CheckboxContainer>
+                  <HiddenCheckbox
+                    checked={activeFilters.includes(genre.id)}
+                    onChange={() => handleFilter(genre.id)}
+                    type="checkbox"
+                  />
+                  <StyledCheckbox checked={activeFilters.includes(genre.id)}>
+                    <Icon viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </Icon>
+                  </StyledCheckbox>
+                </CheckboxContainer>
                 {genre.name}
               </Label>
             </Genre>
@@ -50,17 +57,63 @@ const Wrapper = styled.div`
   left: 0;
 `;
 
-const List = styled.ul``;
+const List = styled.ul`
+  padding: 1rem;
+`;
 
 const Genre = styled.li`
   cursor: pointer;
+  padding: 0.5rem;
 `;
 
-const Title = styled.h2``;
+const Title = styled.h2`
+  padding: 1.5rem;
+`;
 
-const Checkbox = styled.input``;
+const Icon = styled.svg`
+  fill: none;
+  stroke: black;
+  stroke-width: 2px;
+`;
+
+const CheckboxContainer = styled.div`
+  margin-right: 0.5rem;
+
+  display: inline-block;
+  vertical-align: middle;
+`;
+
+const HiddenCheckbox = styled.input`
+  border: 0;
+  clip: rect(0 0 0 0);
+  clippath: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+`;
+
+const StyledCheckbox = styled.div`
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: ${props => (props.checked ? "#e2f720" : "#302e44")};
+  border-radius: 3px;
+  transition: all 150ms;
+
+  ${HiddenCheckbox}:focus + & {
+    box-shadow: 0 0 0 1px #fcffe0;
+  }
+
+  ${Icon} {
+    visibility: ${props => (props.checked ? "visible" : "hidden")};
+  }
+`;
 
 const Label = styled.label`
-width: 100%,
-height: 100%;
+  width: 100%;
+  height: 100%;
 `;

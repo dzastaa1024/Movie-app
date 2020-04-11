@@ -18,8 +18,8 @@ export const fetchPopularMovies = async () => {
   return res.data.results;
 };
 
-export const fetchMoviesByKeyword = async keyword => {
-  const url = `${baseUrl}/3/search/movie?api_key=${process.env.REACT_APP_APIkey}&query=${keyword}`;
+export const fetchMoviesByKeyword = async (keyword, page = 1) => {
+  const url = `${baseUrl}/3/search/movie?api_key=${process.env.REACT_APP_APIkey}&query=${keyword}&page=${page}`;
 
   const res = await axios.get(url);
 
@@ -34,8 +34,8 @@ export const fetchMoviesUpcoming = async () => {
   return res.data.results;
 };
 
-export const fetchTVShowsByKeyword = async tvShows => {
-  const url = `${baseUrl}/3/search/movie?api_key=${process.env.REACT_APP_APIkey}&query=${tvShows}`;
+export const fetchTVShowsByKeyword = async (keyword, page = 1) => {
+  const url = `${baseUrl}/3/search/movie?api_key=${process.env.REACT_APP_APIkey}&query=${keyword}&page=${page}`;
 
   const res = await axios.get(url);
 

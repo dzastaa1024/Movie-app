@@ -7,7 +7,8 @@ export default class TvPage extends Component {
   state = {
     moviesToRender: [],
     isModal: false,
-    clikedMovie: null
+    clikedMovie: null,
+    page: 0
   };
 
   async componentDidMount() {
@@ -23,17 +24,32 @@ export default class TvPage extends Component {
     this.searchTVShhows(keyword);
   }
 
-  componentDidUpdate() {
-    this.searchTVShhows(this.props.keyword);
+  componentDidUpdate(prevProps) {
+    if (this.props.keyword && this.props.keyword !== prevProps.keyword) {
+      this.searchTVShhows(this.props.keyword);
+    }
   }
 
   async searchTVShhows(keyword) {
     const resAllMovies = await fetcher.fetchTVShowsByKeyword(keyword);
 
     this.setState({
-      moviesToRender: resAllMovies
+      moviesToRender: resAllMovies,
+      page: this.state.page + 1
     });
   }
+
+  handleLoadMore = async () => {
+    const resMovies = await fetcher.fetchTVShowsByKeyword(
+      this.props.keyword,
+      this.state.page + 1
+    );
+
+    this.setState({
+      moviesToRender: this.state.moviesToRender.concat(resMovies),
+      page: this.state.page + 1
+    });
+  };
 
   closeModal = () => {
     this.setState({
@@ -52,7 +68,12 @@ export default class TvPage extends Component {
     const { clikedMovie, moviesToRender, isModal } = this.state;
     return (
       <>
-        <MovieList allMovies={moviesToRender} handleClick={this.handleClick} />;
+        <MovieList
+          allMovies={moviesToRender}
+          handleClick={this.handleClick}
+          handleLoadMore={this.handleLoadMore}
+        />
+        ;
         {isModal && (
           <MovieModal
             close={this.closeModal}

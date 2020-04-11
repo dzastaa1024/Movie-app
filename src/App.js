@@ -40,6 +40,8 @@ export default class App extends React.Component {
     this.setState({
       [name]: value
     });
+
+    // value && setInterval(() => this.searchMovies(), 1000);
   };
 
   handleSubmit = movie => {

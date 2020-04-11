@@ -173,5 +173,6 @@ const SubmitBtn = styled.button`
   border-radius: 2px;
   box-shadow: 0 1px 2px grey;
   cursor: pointer;
-  margin-left: 2rem;
+  margin: 0 auto;
+  display: block;
 `;

@@ -24,8 +24,9 @@ export default class MainPage extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.keyword && this.props.keyword !== prevProps.keyword) {
-      this.searchMovies(this.props.keyword);
+    const { keyword } = this.props;
+    if (keyword && keyword !== prevProps.keyword) {
+      this.searchMovies(keyword);
     }
   }
 

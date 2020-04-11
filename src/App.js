@@ -40,8 +40,6 @@ export default class App extends React.Component {
     this.setState({
       [name]: value
     });
-
-    // value && setInterval(() => this.searchMovies(), 1000);
   };
 
   handleSubmit = movie => {
@@ -52,7 +50,7 @@ export default class App extends React.Component {
 
   render() {
     const { keyword, addMovieToWatchList, activeFilters } = this.state;
-    console.log(activeFilters);
+
     return (
       <>
         <GlobalStyle />

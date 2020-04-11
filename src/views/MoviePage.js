@@ -19,7 +19,6 @@ export default class MoviePage extends Component {
         moviesToRender: res
       });
 
-      console.log(res);
       return;
     }
 

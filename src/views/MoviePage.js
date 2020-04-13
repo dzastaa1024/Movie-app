@@ -68,12 +68,37 @@ export default class MoviePage extends Component {
   render() {
     const { clikedMovie, moviesToRender, isModal } = this.state;
 
+    const { genreFilters, languageFilters } = this.props;
+
+    let movieToRender = moviesToRender;
+
+    genreFilters.length > 0 &&
+      genreFilters.forEach(filterId => {
+        movieToRender = movieToRender.filter(movie => {
+          return (
+            (movie.genre_ids && movie.genre_ids.includes(filterId)) ||
+            (movie.genre && movie.genre === filterId)
+          );
+        });
+      });
+
+    languageFilters.length > 0 &&
+      languageFilters.forEach(filterId => {
+        movieToRender = movieToRender.filter(movie => {
+          return (
+            movie.original_language && movie.original_language === filterId
+          );
+        });
+      });
+    console.log(moviesToRender);
+
     return (
       <>
         <MovieList
-          allMovies={moviesToRender}
+          allMovies={movieToRender}
           handleClick={this.handleClick}
           handleLoadMore={this.handleLoadMore}
+          isActiveFilter={!!languageFilters.length || !!genreFilters.length}
         />
         ;
         {isModal && (

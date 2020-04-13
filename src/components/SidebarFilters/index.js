@@ -2,17 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import * as fetcher from "../../fetcher";
 import SideBarFiltersList from "../SideBarFiltersList";
+import Scroll from "../../Scroll";
 
 export default class SidebarFilters extends React.Component {
   state = {
     genres: [],
-    languages: []
+    languages: [],
   };
 
-  mapLanguage = languages =>
-    languages.map(language => ({
+  mapLanguage = (languages) =>
+    languages.map((language) => ({
       id: language.iso_639_1,
-      name: language.english_name
+      name: language.english_name,
     }));
 
   async componentDidMount() {
@@ -23,7 +24,7 @@ export default class SidebarFilters extends React.Component {
 
     this.setState({
       genres: resGenre,
-      languages: languages
+      languages: languages,
     });
   }
 
@@ -32,20 +33,24 @@ export default class SidebarFilters extends React.Component {
     const { handleFilter, genreFilters, languageFilters } = this.props;
     return (
       <Wrapper>
-        <SideBarFiltersList
-          filters={genres}
-          handleFilter={handleFilter}
-          activeFilters={genreFilters}
-          heading={"Genres"}
-          filterType="genreFilters"
-        />
-        <SideBarFiltersList
-          filters={languages}
-          handleFilter={handleFilter}
-          activeFilters={languageFilters}
-          heading={"Languages"}
-          filterType="languageFilters"
-        />
+        <Scroll>
+          <SideBarFiltersList
+            filters={genres}
+            handleFilter={handleFilter}
+            activeFilters={genreFilters}
+            heading={"Genres"}
+            filterType="genreFilters"
+          />
+        </Scroll>
+        <Scroll>
+          <SideBarFiltersList
+            filters={languages}
+            handleFilter={handleFilter}
+            activeFilters={languageFilters}
+            heading={"Languages"}
+            filterType="languageFilters"
+          />
+        </Scroll>
       </Wrapper>
     );
   }

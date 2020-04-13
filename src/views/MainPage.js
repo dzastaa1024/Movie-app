@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as fetcher from "../fetcher";
 import MovieList from "../components/MovieList";
 import MovieModal from "../components/Modal/MovieModal";
+import Slider from "../components/Slider";
 
 export default class MainPage extends Component {
   state = {
@@ -10,7 +11,7 @@ export default class MainPage extends Component {
     allMoviesAndTvShows: [],
     isModal: false,
     clikedMovie: null,
-    page: 0
+    page: 0,
   };
 
   async componentDidMount() {
@@ -19,7 +20,7 @@ export default class MainPage extends Component {
 
     this.setState({
       moviesToRender: resRated,
-      popularMovies: resPopular
+      popularMovies: resPopular,
     });
   }
 
@@ -34,7 +35,7 @@ export default class MainPage extends Component {
     const resAllMovies = await fetcher.fetchAllMoviesAndTvShows(keyword);
     this.setState({
       allMoviesAndTvShows: resAllMovies,
-      page: this.state.page + 1
+      page: this.state.page + 1,
     });
   }
 
@@ -46,17 +47,17 @@ export default class MainPage extends Component {
     console.log(resAllMovies);
     this.setState({
       allMoviesAndTvShows: this.state.allMoviesAndTvShows.concat(resAllMovies),
-      page: this.state.page + 1
+      page: this.state.page + 1,
     });
   };
 
   closeModal = () => {
     this.setState({
-      isModal: false
+      isModal: false,
     });
   };
 
-  handleClick = movie => {
+  handleClick = (movie) => {
     // const { allMoviesAndTvShows, popularMovies, moviesToRender } = this.state;
     // const foundMovie = [
     //   ...allMoviesAndTvShows,
@@ -66,7 +67,7 @@ export default class MainPage extends Component {
 
     this.setState({
       isModal: true,
-      clikedMovie: movie
+      clikedMovie: movie,
     });
   };
 
@@ -76,7 +77,7 @@ export default class MainPage extends Component {
       popularMovies,
       allMoviesAndTvShows,
       clikedMovie,
-      isModal
+      isModal,
     } = this.state;
 
     const { genreFilters, languageFilters } = this.props;
@@ -84,8 +85,8 @@ export default class MainPage extends Component {
     let movieToRender = allMoviesAndTvShows;
 
     genreFilters.length > 0 &&
-      genreFilters.forEach(filterId => {
-        movieToRender = movieToRender.filter(movie => {
+      genreFilters.forEach((filterId) => {
+        movieToRender = movieToRender.filter((movie) => {
           return (
             (movie.genre_ids && movie.genre_ids.includes(filterId)) ||
             (movie.genre && movie.genre === filterId)
@@ -94,21 +95,33 @@ export default class MainPage extends Component {
       });
 
     languageFilters.length > 0 &&
-      languageFilters.forEach(filterId => {
-        movieToRender = movieToRender.filter(movie => {
+      languageFilters.forEach((filterId) => {
+        movieToRender = movieToRender.filter((movie) => {
           return (
             movie.original_language && movie.original_language === filterId
           );
         });
       });
 
-    console.log(movieToRender);
+    const isAnyFilterActive = !!languageFilters.length || !!genreFilters.length;
     return (
       <>
+        {!isAnyFilterActive && movieToRender.length === 0 && (
+          <>
+            <Slider
+              movies={popularMovies}
+              sliderTitle="Weekly Top Popular Movies"
+              handleClick={this.handleClick}
+            />
+            <Slider
+              movies={moviesToRender}
+              sliderTitle="Weekly Top Rated Movies"
+              handleClick={this.handleClick}
+            />
+          </>
+        )}
+
         <MovieList
-          isActiveFilter={!!languageFilters.length || !!genreFilters.length}
-          ratedMovies={moviesToRender}
-          popularMovies={popularMovies}
           allMovies={movieToRender}
           handleClick={this.handleClick}
           handleLoadMore={this.handleLoadMore}

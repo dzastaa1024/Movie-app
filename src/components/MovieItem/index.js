@@ -3,9 +3,9 @@ import styled, { css } from "styled-components";
 //import { AiFillStar } from "react-icons/ai";
 import { Star } from "@styled-icons/boxicons-solid/Star";
 
-const MovieItem = ({ movie, sidebarNews, handleClick }) => {
+const MovieItem = ({ movie, sidebarNews, handleClick, slide }) => {
   return (
-    <Item sidebarNews={sidebarNews} onClick={() => handleClick(movie)}>
+    <Item slide={slide} onClick={() => handleClick(movie)}>
       <Image src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} />
       <Title sidebarNews>{movie.title}</Title>
       {!sidebarNews && (
@@ -15,7 +15,9 @@ const MovieItem = ({ movie, sidebarNews, handleClick }) => {
         </Average>
       )}
       {sidebarNews && (
-        <ReleaseDate sidebarNews>{movie.release_date}</ReleaseDate>
+        <ReleaseDate sidebarNews={sidebarNews}>
+          {movie.release_date}
+        </ReleaseDate>
       )}
     </Item>
   );
@@ -29,6 +31,12 @@ const Item = styled.li`
   flex: 0 1 25%;
   padding: 0 2rem;
   cursor: pointer;
+
+  ${(props) =>
+    props.slide &&
+    css`
+      flex: 0 0 25%;
+    `}
 `;
 
 const Image = styled.img`
@@ -40,7 +48,7 @@ const Title = styled.h1`
   padding-top: 2rem;
   color: #fff;
 
-  ${props =>
+  ${(props) =>
     props.sidebarNews &&
     css`
       font-size: 1.5rem;
@@ -55,7 +63,7 @@ const Average = styled.p`
 const ReleaseDate = styled.p`
   display: none;
 
-  ${props =>
+  ${(props) =>
     props.sidebarNews &&
     css`
       display: block;

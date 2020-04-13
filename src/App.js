@@ -90,6 +90,8 @@ export default class App extends React.Component {
                   <MoviePage
                     keyword={keyword}
                     handleSubmit={this.handleSubmit}
+                    genreFilters={genreFilters}
+                    languageFilters={languageFilters}
                   />
                 </Scroll>
               )}
@@ -98,7 +100,12 @@ export default class App extends React.Component {
               path="/tvshows"
               render={() => (
                 <Scroll>
-                  <TvPage keyword={keyword} handleSubmit={this.handleSubmit} />
+                  <TvPage
+                    keyword={keyword}
+                    handleSubmit={this.handleSubmit}
+                    genreFilters={genreFilters}
+                    languageFilters={languageFilters}
+                  />
                 </Scroll>
               )}
             />

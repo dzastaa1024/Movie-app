@@ -10,4 +10,5 @@ export default Scroll;
 const ScrollWrapper = styled.div`
   overflow-y: scroll;
   overflow-x: hidden;
+  height: 100%;
 `;

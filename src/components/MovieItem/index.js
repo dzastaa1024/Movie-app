@@ -29,13 +29,14 @@ const Item = styled.li`
   display: flex;
   flex-direction: column;
   flex: 0 1 25%;
-  padding: 0 2rem;
+  padding: 0 2rem 2rem;
   cursor: pointer;
 
   ${(props) =>
     props.slide &&
     css`
-      flex: 0 0 25%;
+      flex: 0 0 22%;
+      padding: 0 2rem;
     `}
 `;
 

@@ -109,46 +109,48 @@ export default class MainPage extends Component {
     const isAnyFilterActive = !!languageFilters.length || !!genreFilters.length;
     return (
       <Wrapper>
-        {!isAnyFilterActive && movieToRender.length === 0 && (
-          <Scroll>
-            <Slider
-              movies={popularMovies}
-              sliderTitle="Weekly Top Popular Movies"
-              handleClick={this.handleClick}
-            />
-            <Slider
-              movies={moviesToRender}
-              sliderTitle="Weekly Top Rated Movies"
-              handleClick={this.handleClick}
-            />
-          </Scroll>
-        )}
         <Scroll>
+          {!isAnyFilterActive && movieToRender.length === 0 && (
+            <>
+              <Slider
+                movies={popularMovies}
+                sliderTitle="Weekly Top Popular Movies"
+                handleClick={this.handleClick}
+              />
+              <Slider
+                movies={moviesToRender}
+                sliderTitle="Weekly Top Rated Movies"
+                handleClick={this.handleClick}
+              />
+            </>
+          )}
+
           <MovieList
             allMovies={movieToRender}
             handleClick={this.handleClick}
             handleLoadMore={this.handleLoadMore}
           />
-        </Scroll>
 
-        {isModal && (
-          <MovieModal
-            close={this.closeModal}
-            clikedMovie={clikedMovie}
-            handleSubmit={this.props.handleSubmit}
-          />
-        )}
+          {isModal && (
+            <MovieModal
+              close={this.closeModal}
+              clikedMovie={clikedMovie}
+              handleSubmit={this.props.handleSubmit}
+            />
+          )}
+        </Scroll>
       </Wrapper>
     );
   }
 }
 
 export const Wrapper = styled.div`
-  padding: 3rem;
+  padding: 2rem;
   background-color: #18171f;
   margin-left: 20rem;
   margin-top: 10rem;
   border-top-left-radius: 40px;
   width: calc(100% - 2 * 200px);
-  height: calc(100% - 100px);
 `;
+
+// height: calc(100% - 100px);

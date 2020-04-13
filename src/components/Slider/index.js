@@ -28,9 +28,8 @@ const SliderList = styled.ul`
   overflow-x: scroll;
 `;
 
-const Title = styled.h2`
-  padding-bottom: 2rem;
-  padding-top: 2rem;
-  color: #fff;
+const Title = styled.h1`
+  padding-bottom: 1rem;
   padding-left: 2rem;
+  color: #fff;
 `;

@@ -2,33 +2,34 @@ import React from "react";
 import styled from "styled-components";
 import MovieModal from "../Modal/MovieModal";
 import MovieList from "../MovieList";
+import Scroll from "../../Scroll";
 import * as fetcher from "../../fetcher";
 
 export default class SidebarNews extends React.Component {
   state = {
     isModal: false,
     clikedMovie: null,
-    upComingMovies: []
+    upComingMovies: [],
   };
 
   async componentDidMount() {
     const resUpComing = await fetcher.fetchMoviesUpcoming();
 
     this.setState({
-      upComingMovies: resUpComing
+      upComingMovies: resUpComing,
     });
   }
 
   closeModal = () => {
     this.setState({
-      isModal: false
+      isModal: false,
     });
   };
 
-  handleClick = movie => {
+  handleClick = (movie) => {
     this.setState({
       clikedMovie: movie,
-      isModal: true
+      isModal: true,
     });
   };
 
@@ -36,17 +37,19 @@ export default class SidebarNews extends React.Component {
     const { clikedMovie, upComingMovies, isModal } = this.state;
     return (
       <Wrapper>
-        <List>
-          <Title>Upcoming Movies</Title>
-          <MovieList
-            allMovies={upComingMovies}
-            handleClick={this.handleClick}
-            sidebarNews
-          />
-        </List>
-        {isModal && (
-          <MovieModal close={this.closeModal} clikedMovie={clikedMovie} />
-        )}
+        <Scroll>
+          <List>
+            <Title>Upcoming Movies</Title>
+            <MovieList
+              allMovies={upComingMovies}
+              handleClick={this.handleClick}
+              sidebarNews
+            />
+          </List>
+          {isModal && (
+            <MovieModal close={this.closeModal} clikedMovie={clikedMovie} />
+          )}
+        </Scroll>
       </Wrapper>
     );
   }
@@ -60,7 +63,7 @@ const Wrapper = styled.div`
   bottom: 0;
   right: 0;
   background-color: #232220;
-  padding: 1rem;
+  padding: 2rem;
 `;
 
 const List = styled.ul`
@@ -72,7 +75,6 @@ const List = styled.ul`
 const Title = styled.li`
   display: flex;
   padding-bottom: 2rem;
-  padding-top: 2rem;
   color: #fff;
   font-size: 2rem;
 `;

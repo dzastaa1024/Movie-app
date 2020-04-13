@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import MovieList from "../components/MovieList";
 import * as fetcher from "../fetcher";
+
+import MovieList from "../components/MovieList";
 import MovieModal from "../components/Modal/MovieModal";
+import Scroll from "../Scroll";
 import { Wrapper } from "../views/MainPage";
 
 export default class TvPage extends Component {
@@ -92,19 +94,21 @@ export default class TvPage extends Component {
 
     return (
       <Wrapper>
-        <MovieList
-          allMovies={movieToRender}
-          handleClick={this.handleClick}
-          handleLoadMore={this.handleLoadMore}
-        />
-        ;
-        {isModal && (
-          <MovieModal
-            close={this.closeModal}
-            clikedMovie={clikedMovie}
-            handleSubmit={this.props.handleSubmit}
+        <Scroll>
+          <MovieList
+            allMovies={movieToRender}
+            handleClick={this.handleClick}
+            handleLoadMore={this.handleLoadMore}
           />
-        )}
+          ;
+          {isModal && (
+            <MovieModal
+              close={this.closeModal}
+              clikedMovie={clikedMovie}
+              handleSubmit={this.props.handleSubmit}
+            />
+          )}
+        </Scroll>
       </Wrapper>
     );
   }

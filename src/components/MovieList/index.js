@@ -11,7 +11,7 @@ export default class MovieList extends React.Component {
       <Wrapper>
         {allMovies && allMovies.length > 0 && (
           <>
-            <Title>Results</Title>
+            <Title sidebarNews={sidebarNews}>Results</Title>
             <List sidebarNews={sidebarNews}>
               {allMovies.map((movie) => {
                 return (
@@ -58,9 +58,14 @@ const List = styled.ul`
   }
 `;
 
-const Title = styled.h1`
+const Title = styled.p`
   padding-bottom: 2rem;
-  padding-top: 2rem;
   color: #fff;
   padding-left: 2rem;
+
+  ${(props) =>
+    props.sidebarNews &&
+    css`
+       display: none;
+    `}
 `;

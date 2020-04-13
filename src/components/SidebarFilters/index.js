@@ -33,24 +33,20 @@ export default class SidebarFilters extends React.Component {
     const { handleFilter, genreFilters, languageFilters } = this.props;
     return (
       <Wrapper>
-        <Scroll>
-          <SideBarFiltersList
-            filters={genres}
-            handleFilter={handleFilter}
-            activeFilters={genreFilters}
-            heading={"Genres"}
-            filterType="genreFilters"
-          />
-        </Scroll>
-        <Scroll>
-          <SideBarFiltersList
-            filters={languages}
-            handleFilter={handleFilter}
-            activeFilters={languageFilters}
-            heading={"Languages"}
-            filterType="languageFilters"
-          />
-        </Scroll>
+        <SideBarFiltersList
+          filters={genres}
+          handleFilter={handleFilter}
+          activeFilters={genreFilters}
+          heading={"Genres"}
+          filterType="genreFilters"
+        />
+        <SideBarFiltersList
+          filters={languages}
+          handleFilter={handleFilter}
+          activeFilters={languageFilters}
+          heading={"Languages"}
+          filterType="languageFilters"
+        />
       </Wrapper>
     );
   }

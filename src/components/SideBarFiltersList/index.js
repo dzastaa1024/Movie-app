@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Scroll from "../../Scroll";
 
 const SideBarFiltersList = ({
   filters,
@@ -9,37 +10,48 @@ const SideBarFiltersList = ({
   filterType,
 }) => {
   return (
-    <List>
+    <Wrapper>
       <Title>{heading}</Title>
-      {filters.map((filter) => (
-        <Genre key={filter.id}>
-          <Label>
-            <CheckboxContainer>
-              <HiddenCheckbox
-                checked={activeFilters.includes(filter.id)}
-                onChange={() => handleFilter(filter.id, filterType)}
-                type="checkbox"
-              />
-              <StyledCheckbox checked={activeFilters.includes(filter.id)}>
-                <Icon viewBox="0 0 24 24">
-                  <polyline points="20 6 9 17 4 12" />
-                </Icon>
-              </StyledCheckbox>
-            </CheckboxContainer>
-            {filter.name}
-          </Label>
-        </Genre>
-      ))}
-    </List>
+      <Scroll>
+        <List>
+          {filters.map((filter) => (
+            <Genre key={filter.id}>
+              <Label>
+                <CheckboxContainer>
+                  <HiddenCheckbox
+                    checked={activeFilters.includes(filter.id)}
+                    onChange={() => handleFilter(filter.id, filterType)}
+                    type="checkbox"
+                  />
+                  <StyledCheckbox checked={activeFilters.includes(filter.id)}>
+                    <Icon viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12" />
+                    </Icon>
+                  </StyledCheckbox>
+                </CheckboxContainer>
+                {filter.name}
+              </Label>
+            </Genre>
+          ))}
+        </List>
+      </Scroll>
+    </Wrapper>
   );
 };
 
 export default SideBarFiltersList;
 
-const List = styled.ul`
-  padding: 1rem;
+const Wrapper = styled.div`
+  padding: 2rem;
   color: #d4d4d4;
-  font-size: 5px;
+  font-size: 1.3rem;
+  height: 50%;
+  overflow: hidden;
+`;
+
+const List = styled.ul`
+  cursor: pointer;
+  padding: 0.5rem;
 `;
 
 const Genre = styled.li`
@@ -48,7 +60,7 @@ const Genre = styled.li`
 `;
 
 const Title = styled.h2`
-  padding: 1.5rem;
+  padding-bottom: 2rem;
   color: #d4d4d4;
 `;
 

@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import MovieList from "../components/MovieList";
 import * as fetcher from "../fetcher";
 import MovieModal from "../components/Modal/MovieModal";
+import { Wrapper } from "../views/MainPage";
 
 export default class TvPage extends Component {
   state = {
     moviesToRender: [],
     isModal: false,
     clikedMovie: null,
-    page: 0
+    page: 0,
   };
 
   async componentDidMount() {
@@ -17,7 +18,7 @@ export default class TvPage extends Component {
       const res = await fetcher.fetchTVShowsPopular();
       console.log(res);
       this.setState({
-        moviesToRender: res
+        moviesToRender: res,
       });
       return;
     }
@@ -35,7 +36,7 @@ export default class TvPage extends Component {
 
     this.setState({
       moviesToRender: resAllMovies,
-      page: this.state.page + 1
+      page: this.state.page + 1,
     });
   }
 
@@ -47,20 +48,20 @@ export default class TvPage extends Component {
 
     this.setState({
       moviesToRender: this.state.moviesToRender.concat(resMovies),
-      page: this.state.page + 1
+      page: this.state.page + 1,
     });
   };
 
   closeModal = () => {
     this.setState({
-      isModal: false
+      isModal: false,
     });
   };
 
-  handleClick = movie => {
+  handleClick = (movie) => {
     this.setState({
       isModal: true,
-      clikedMovie: movie
+      clikedMovie: movie,
     });
   };
 
@@ -71,8 +72,8 @@ export default class TvPage extends Component {
     let movieToRender = moviesToRender;
 
     genreFilters.length > 0 &&
-      genreFilters.forEach(filterId => {
-        movieToRender = movieToRender.filter(movie => {
+      genreFilters.forEach((filterId) => {
+        movieToRender = movieToRender.filter((movie) => {
           return (
             (movie.genre_ids && movie.genre_ids.includes(filterId)) ||
             (movie.genre && movie.genre === filterId)
@@ -81,8 +82,8 @@ export default class TvPage extends Component {
       });
 
     languageFilters.length > 0 &&
-      languageFilters.forEach(filterId => {
-        movieToRender = movieToRender.filter(movie => {
+      languageFilters.forEach((filterId) => {
+        movieToRender = movieToRender.filter((movie) => {
           return (
             movie.original_language && movie.original_language === filterId
           );
@@ -90,7 +91,7 @@ export default class TvPage extends Component {
       });
 
     return (
-      <>
+      <Wrapper>
         <MovieList
           allMovies={movieToRender}
           handleClick={this.handleClick}
@@ -104,7 +105,7 @@ export default class TvPage extends Component {
             handleSubmit={this.props.handleSubmit}
           />
         )}
-      </>
+      </Wrapper>
     );
   }
 }

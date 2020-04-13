@@ -5,7 +5,7 @@ import MovieItem from "../MovieItem";
 const Slider = (props) => {
   return (
     <>
-      <h2>{props.sliderTitle}</h2>
+      <Title>{props.sliderTitle}</Title>
       <SliderList>
         {props.movies.map((movie) => (
           <MovieItem
@@ -24,25 +24,13 @@ export default Slider;
 
 const SliderList = styled.ul`
   display: flex;
-  margin-bottom: 5rem;
-  /* flex-wrap: wrap; */
   overflow: hidden;
   overflow-x: scroll;
+`;
 
-
-  /* ${(props) =>
-    props.keyword &&
-    css`
-       flex-wrap: wrap;
-    `}
-
-  ${(props) =>
-    props.sidebarNews &&
-    css`
-       flex-direction: column;
-    `}
-
-  @media (max-width: 750px) {
-    flex-direction: column;
-  } */
+const Title = styled.h2`
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  color: #fff;
+  padding-left: 2rem;
 `;

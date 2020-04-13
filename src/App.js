@@ -18,35 +18,35 @@ export default class App extends React.Component {
     keyword: "",
     addMovieToWatchList: [],
     genreFilters: [],
-    languageFilters: []
+    languageFilters: [],
   };
 
   handleFilter = (id, filterType) => {
     if (this.state[filterType].includes(id)) {
       this.setState({
         [filterType]: this.state[filterType].filter(
-          filteredId => filteredId !== id
-        )
+          (filteredId) => filteredId !== id
+        ),
       });
       return;
     }
 
     this.setState({
-      [filterType]: this.state[filterType].concat(id)
+      [filterType]: this.state[filterType].concat(id),
     });
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     const { name, value } = e.target;
 
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
-  handleSubmit = movie => {
+  handleSubmit = (movie) => {
     this.setState({
-      addMovieToWatchList: this.state.addMovieToWatchList.concat(movie)
+      addMovieToWatchList: this.state.addMovieToWatchList.concat(movie),
     });
   };
 
@@ -55,7 +55,7 @@ export default class App extends React.Component {
       keyword,
       addMovieToWatchList,
       genreFilters,
-      languageFilters
+      languageFilters,
     } = this.state;
 
     return (

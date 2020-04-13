@@ -39,7 +39,6 @@ const Wrapper = styled.div``;
 
 const List = styled.ul`
   display: flex;
-  margin-bottom: 5rem;
   flex-wrap: wrap;
 
   ${(props) =>

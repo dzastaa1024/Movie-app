@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import * as fetcher from "../fetcher";
+import styled from "styled-components";
+
 import MovieList from "../components/MovieList";
 import MovieModal from "../components/Modal/MovieModal";
 import Slider from "../components/Slider";
+import Scroll from "../Scroll";
 
 export default class MainPage extends Component {
   state = {
@@ -105,9 +108,9 @@ export default class MainPage extends Component {
 
     const isAnyFilterActive = !!languageFilters.length || !!genreFilters.length;
     return (
-      <>
+      <Wrapper>
         {!isAnyFilterActive && movieToRender.length === 0 && (
-          <>
+          <Scroll>
             <Slider
               movies={popularMovies}
               sliderTitle="Weekly Top Popular Movies"
@@ -118,14 +121,15 @@ export default class MainPage extends Component {
               sliderTitle="Weekly Top Rated Movies"
               handleClick={this.handleClick}
             />
-          </>
+          </Scroll>
         )}
-
-        <MovieList
-          allMovies={movieToRender}
-          handleClick={this.handleClick}
-          handleLoadMore={this.handleLoadMore}
-        />
+        <Scroll>
+          <MovieList
+            allMovies={movieToRender}
+            handleClick={this.handleClick}
+            handleLoadMore={this.handleLoadMore}
+          />
+        </Scroll>
 
         {isModal && (
           <MovieModal
@@ -134,7 +138,17 @@ export default class MainPage extends Component {
             handleSubmit={this.props.handleSubmit}
           />
         )}
-      </>
+      </Wrapper>
     );
   }
 }
+
+export const Wrapper = styled.div`
+  padding: 3rem;
+  background-color: #18171f;
+  margin-left: 20rem;
+  margin-top: 10rem;
+  border-top-left-radius: 40px;
+  width: calc(100% - 2 * 200px);
+  height: calc(100% - 100px);
+`;

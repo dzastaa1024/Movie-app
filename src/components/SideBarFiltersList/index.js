@@ -6,12 +6,12 @@ const SideBarFiltersList = ({
   handleFilter,
   activeFilters,
   heading,
-  filterType
+  filterType,
 }) => {
   return (
     <List>
       <Title>{heading}</Title>
-      {filters.map(filter => (
+      {filters.map((filter) => (
         <Genre key={filter.id}>
           <Label>
             <CheckboxContainer>
@@ -81,7 +81,7 @@ const StyledCheckbox = styled.div`
   display: inline-block;
   width: 14px;
   height: 14px;
-  background: ${props => (props.checked ? "#e2f720" : "#302e44")};
+  background: ${(props) => (props.checked ? "#e2f720" : "#302e44")};
   border-radius: 3px;
   transition: all 150ms;
 
@@ -90,7 +90,7 @@ const StyledCheckbox = styled.div`
   }
 
   ${Icon} {
-    visibility: ${props => (props.checked ? "visible" : "hidden")};
+    visibility: ${(props) => (props.checked ? "visible" : "hidden")};
   }
 `;
 

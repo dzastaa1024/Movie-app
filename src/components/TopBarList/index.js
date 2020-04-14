@@ -71,7 +71,7 @@ const MenuItemNavLink = styled(NavLink)`
 
 const MenuItemValue = styled.span`
   &:hover {
-    color: white;
+    color: #ecff34;
   }
 `;
 

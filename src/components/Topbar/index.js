@@ -61,6 +61,7 @@ const Input = styled.input`
   font-size: 2rem;
   font-weight: 100;
   color: white;
+  outline: none;
 `;
 
 const RightWrapper = styled.div`

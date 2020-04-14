@@ -31,11 +31,15 @@ export default class MoviePage extends Component {
     if (this.props.keyword && this.props.keyword !== prevProps.keyword) {
       this.searchMovies(this.props.keyword);
     }
+    if (this.props.keyword === "" && this.props.keyword !== prevProps.keyword) {
+      this.setState({ moviesToRender: [] });
+    }
   }
 
   async searchMovies(keyword) {
     const resAllMovies = await fetcher.fetchMoviesByKeyword(keyword);
-
+    console.log("keyword", keyword);
+    console.log("resAllMovies", resAllMovies);
     this.setState({
       moviesToRender: resAllMovies.results,
       page: this.state.page + 1,

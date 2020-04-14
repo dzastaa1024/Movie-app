@@ -31,6 +31,9 @@ export default class TvPage extends Component {
     if (this.props.keyword && this.props.keyword !== prevProps.keyword) {
       this.searchTVShhows(this.props.keyword);
     }
+    if (this.props.keyword === "" && this.props.keyword !== prevProps.keyword) {
+      this.setState({ moviesToRender: [] });
+    }
   }
 
   async searchTVShhows(keyword) {

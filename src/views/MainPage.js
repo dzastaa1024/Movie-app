@@ -32,6 +32,9 @@ export default class MainPage extends Component {
     if (keyword && keyword !== prevProps.keyword) {
       this.searchMovies(keyword);
     }
+    if (this.props.keyword === "" && this.props.keyword !== prevProps.keyword) {
+      this.setState({ allMoviesAndTvShows: [] });
+    }
   }
 
   async searchMovies(keyword) {
@@ -151,6 +154,7 @@ export const Wrapper = styled.div`
   margin-top: 10rem;
   border-top-left-radius: 40px;
   width: calc(100% - 2 * 200px);
+  min-height: 100%;
 `;
 
 // height: calc(100% - 100px);

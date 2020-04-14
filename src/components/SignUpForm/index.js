@@ -7,12 +7,12 @@ export default class SignUpForm extends React.Component {
     surname: "",
     email: "",
     dateOfBirth: "",
-    gender: "female"
+    gender: "female",
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -98,22 +98,28 @@ export default class SignUpForm extends React.Component {
               <Option value="maried">Maried</Option>
             </Select>
           </Label>
+          <SubmitBtn>Submit</SubmitBtn>
         </Wrapper>
-        <SubmitBtn>Submit</SubmitBtn>
       </>
     );
   }
 }
 
 const Wrapper = styled.form`
-  width: 100%;
-  height: 90%;
   display: grid;
 
-  grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(24rem, 3fr));
   justify-content: center;
   align-items: center;
   font-size: 1.6rem;
+
+  height: calc(100% - 1 * 100px);
+  padding: 2rem;
+  background-color: #18171f;
+  margin-left: 20rem;
+  margin-top: 10rem;
+  border-top-left-radius: 40px;
+  width: calc(100% - 2 * 200px);
 `;
 
 const InputWrapper = styled.div`
@@ -123,7 +129,7 @@ const InputWrapper = styled.div`
   border-bottom: 1px solid #d3d3d3;
   flex-shrink: 0;
 
-  ${props =>
+  ${(props) =>
     props.radiobtn &&
     css`
       border: none;
@@ -175,4 +181,8 @@ const SubmitBtn = styled.button`
   cursor: pointer;
   margin: 0 auto;
   display: block;
+
+  position: absolute;
+  bottom: 3%;
+  left: 44%;
 `;

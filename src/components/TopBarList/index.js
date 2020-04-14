@@ -2,29 +2,29 @@ import React, { Component } from "react";
 import UserModal from "../Modal/UserModal";
 
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { User } from "@styled-icons/boxicons-regular/User";
 
 const menuItems = [
   { btnText: "Movies", to: "/movies" },
   { btnText: "TV Shows", to: "/tvshows" },
-  { btnText: "WatchList", to: "/watchlists" }
+  { btnText: "WatchList", to: "/watchlists" },
 ];
 
 export default class TopBarList extends Component {
   state = {
-    isModal: false
+    isModal: false,
   };
 
   closeModal = () => {
     this.setState({
-      isModal: false
+      isModal: false,
     });
   };
 
   handleClick = () => {
     this.setState({
-      isModal: true
+      isModal: true,
     });
   };
 
@@ -32,14 +32,16 @@ export default class TopBarList extends Component {
     return (
       <>
         <Menu>
-          {menuItems.map(menuItem => (
-            <Link to={menuItem.to} key={menuItem.to}>
+          {menuItems.map((menuItem) => (
+            <MenuItemNavLink
+              to={menuItem.to}
+              key={menuItem.to}
+              activeStyle={{ color: "#ecff34" }}
+            >
               <MenuItem>
-                <MenuItemValue href={menuItem.to}>
-                  {menuItem.btnText}
-                </MenuItemValue>
+                <MenuItemValue>{menuItem.btnText}</MenuItemValue>
               </MenuItem>
-            </Link>
+            </MenuItemNavLink>
           ))}
           <MenuItem>
             <Picture>
@@ -63,9 +65,11 @@ const Menu = styled.ul`
 
 const MenuItem = styled.li``;
 
-const MenuItemValue = styled.span`
+const MenuItemNavLink = styled(NavLink)`
   color: grey;
+`;
 
+const MenuItemValue = styled.span`
   &:hover {
     color: white;
   }

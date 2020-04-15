@@ -13,6 +13,22 @@ export default class SignUpForm extends React.Component {
     errors: [],
   };
 
+  componentDidMount() {
+    const newState = localStorage.getItem("data");
+    const parseNewState = JSON.parse(newState);
+
+    console.log("moja data", newState);
+    this.setState({
+      name: parseNewState.name,
+      surname: parseNewState.surname,
+      email: parseNewState.email,
+      phone: parseNewState.phone,
+      dateOfBirth: parseNewState.dateOfBirth,
+      gender: parseNewState.gender,
+      status: parseNewState.status,
+    });
+  }
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -99,6 +115,7 @@ export default class SignUpForm extends React.Component {
       errors,
     } = this.state;
 
+    console.log("moj state", this.state);
     return (
       <>
         <Wrapper>

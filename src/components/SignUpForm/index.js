@@ -21,7 +21,7 @@ export default class SignUpForm extends React.Component {
   };
 
   handleFormSubmit = () => {
-    const data = { ...this.state };
+    const { errors, ...data } = this.state;
 
     const addItemToLocalStorage = (name, value) => {
       return localStorage.setItem(name, JSON.stringify(value));

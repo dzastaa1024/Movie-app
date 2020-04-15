@@ -88,121 +88,128 @@ export default class SignUpForm extends React.Component {
     } = this.state;
     return (
       <>
-        <Wrapper onSubmit={this.handleSubmit}>
-          <InputWrapper>
-            <Label htmlFor="name">Name</Label>
-            <Input
-              value={name}
-              placeholder=""
-              type="text"
-              name="name"
-              id="name"
-              onChange={this.handleChange}
-              autocomplete="new-password"
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <Label htmlFor="surname">Surname</Label>
-            <Input
-              value={surname}
-              placeholder=""
-              type="text"
-              name="surname"
-              id="surname"
-              onChange={this.handleChange}
-              autocomplete="new-password"
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <Label htmlFor="email">Email</Label>
-            <Input
-              value={email}
-              placeholder=""
-              type="text"
-              name="email"
-              id="email"
-              onChange={this.handleChange}
-              autocomplete="new-password"
-            />
-          </InputWrapper>
-
-          <InputWrapper>
-            <Label htmlFor="dateOfBirth">Date of birth</Label>
-            <DateOfBirth
-              value={dateOfBirth}
-              type="date"
-              name="dateOfBirth"
-              id="dateOfBirth"
-              onChange={() => console.log("")}
-            />
-          </InputWrapper>
-
-          <InputWrapper>
-            <Label htmlFor="phone">Phone</Label>
-            <DateOfBirth
-              value={phone}
-              type="phone"
-              name="phone"
-              id="phone"
-              onChange={this.handleChange}
-            />
-          </InputWrapper>
-
-          <InputWrapper radiobtn>
-            <Label htmlFor="male">
-              Male
-              <RadioBtn
-                type="radio"
-                value={gender}
-                name="male"
-                id="male"
-                onChange={() => console.log("")}
+        <Wrapper>
+          <Form onSubmit={this.handleSubmit}>
+            <InputWrapper>
+              <Label htmlFor="name">Name</Label>
+              <Input
+                value={name}
+                placeholder=""
+                type="text"
+                name="name"
+                id="name"
+                onChange={this.handleChange}
+                autocomplete="new-password"
               />
-            </Label>
-            <Label htmlFor="female">
-              Female
-              <RadioBtn
-                type="radio"
-                value="gender"
-                name="female"
-                id="female"
-                onChange={() => console.log("")}
+            </InputWrapper>
+            <InputWrapper>
+              <Label htmlFor="surname">Surname</Label>
+              <Input
+                value={surname}
+                placeholder=""
+                type="text"
+                name="surname"
+                id="surname"
+                onChange={this.handleChange}
+                autocomplete="new-password"
               />
-            </Label>
-          </InputWrapper>
+            </InputWrapper>
+            <InputWrapper>
+              <Label htmlFor="email">Email</Label>
+              <Input
+                value={email}
+                placeholder=""
+                type="text"
+                name="email"
+                id="email"
+                onChange={this.handleChange}
+                autocomplete="new-password"
+              />
+            </InputWrapper>
 
-          <Label htmlFor="select">
-            <Select id="select" onChange={() => console.log("")}>
-              <Option value="single">Single</Option>
-              <Option value="maried">Maried</Option>
-            </Select>
-          </Label>
-          <SubmitBtn>Submit</SubmitBtn>
+            <InputWrapper>
+              <Label htmlFor="dateOfBirth">Date of birth</Label>
+              <DateOfBirth
+                value={dateOfBirth}
+                type="date"
+                name="dateOfBirth"
+                id="dateOfBirth"
+                onChange={this.handleChange}
+              />
+            </InputWrapper>
+
+            <InputWrapper>
+              <Label htmlFor="phone">Phone</Label>
+              <DateOfBirth
+                value={phone}
+                type="phone"
+                name="phone"
+                id="phone"
+                onChange={this.handleChange}
+              />
+            </InputWrapper>
+
+            <InputWrapper radiobtn>
+              <Label htmlFor="male">
+                Male
+                <RadioBtn
+                  type="radio"
+                  value="male"
+                  name="gender"
+                  id="male"
+                  checked={gender === "male"}
+                  onChange={this.handleChange}
+                />
+              </Label>
+              <Label htmlFor="female">
+                Female
+                <RadioBtn
+                  type="radio"
+                  value="female"
+                  name="gender"
+                  id="female"
+                  checked={gender === "female"}
+                  onChange={this.handleChange}
+                />
+              </Label>
+            </InputWrapper>
+
+            <Label htmlFor="select">
+              <Select id="select" onChange={() => console.log("")}>
+                <Option value="single">Single</Option>
+                <Option value="maried">Maried</Option>
+              </Select>
+            </Label>
+            <SubmitBtn>Submit</SubmitBtn>
+          </Form>
+          <ErrorsWrapper>
+            {errors.length > 0 &&
+              errors.map((error) => (
+                <NameOfError key={error.message}> {error.message}</NameOfError>
+              ))}
+          </ErrorsWrapper>
         </Wrapper>
-        {errors.length > 0 &&
-          errors.map((error) => (
-            <NameOfError key={error.message}> {error.message}</NameOfError>
-          ))}
       </>
     );
   }
 }
 
-const Wrapper = styled.form`
-  display: grid;
-
-  grid-template-columns: repeat(auto-fit, minmax(24rem, 3fr));
-  justify-content: center;
-  align-items: center;
-  font-size: 1.6rem;
-
-  height: calc(100% - 1 * 100px);
-  padding: 2rem;
+const Wrapper = styled.div`
   background-color: #18171f;
   margin-left: 20rem;
   margin-top: 10rem;
   border-top-left-radius: 40px;
   width: calc(100% - 2 * 200px);
+  height: calc(100% - 1 * 100px);
+  padding: 5rem;
+`;
+
+const Form = styled.form`
+  display: grid;
+  grid-gap: 5rem;
+  grid-column-gap: 10rem;
+  grid-template-columns: repeat(auto-fit, minmax(24rem, 3fr));
+  margin-bottom: 3rem;
 `;
 
 const InputWrapper = styled.div`
@@ -271,3 +278,7 @@ const SubmitBtn = styled.button`
 `;
 
 const NameOfError = styled.p``;
+
+const ErrorsWrapper = styled.div`
+  color: red;
+`;

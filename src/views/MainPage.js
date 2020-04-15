@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as fetcher from "../fetcher";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import MovieList from "../components/MovieList";
 import MovieModal from "../components/Modal/MovieModal";
@@ -158,3 +158,11 @@ export const Wrapper = styled.div`
 `;
 
 // height: calc(100% - 100px);
+
+// padding: 2rem;
+// background-color: #18171f;
+// margin-left: 20rem;
+// margin-top: 10rem;
+// border-top-left-radius: 40px;
+// width: calc(100% - 2 * 200px);
+// min-height: 100%;

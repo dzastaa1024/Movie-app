@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import MovieList from "../components/MovieList";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export default class WatchPage extends Component {
   render() {

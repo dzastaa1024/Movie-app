@@ -9,6 +9,7 @@ export default class SignUpForm extends React.Component {
     phone: "",
     dateOfBirth: "",
     gender: "female",
+    status: "",
     errors: [],
   };
 
@@ -41,7 +42,7 @@ export default class SignUpForm extends React.Component {
       this.setState({
         errors: errors,
       });
-      return;
+      return false;
     }
     return true;
   };
@@ -68,7 +69,6 @@ export default class SignUpForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
     const isValid = this.isFormValid();
 
     if (!isValid) {
@@ -86,6 +86,7 @@ export default class SignUpForm extends React.Component {
       gender,
       errors,
     } = this.state;
+
     return (
       <>
         <Wrapper>
@@ -175,7 +176,7 @@ export default class SignUpForm extends React.Component {
             </InputWrapper>
 
             <Label htmlFor="select">
-              <Select id="select" onChange={() => console.log("")}>
+              <Select id="select" onChange={this.handleChange} name="status">
                 <Option value="single">Single</Option>
                 <Option value="maried">Maried</Option>
               </Select>

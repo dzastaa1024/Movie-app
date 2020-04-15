@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import * as fetcher from "../../fetcher";
 import SideBarFiltersList from "../SideBarFiltersList";
-import Scroll from "../../Scroll";
 
 export default class SidebarFilters extends React.Component {
   state = {

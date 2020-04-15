@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as fetcher from "../fetcher";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 import MovieList from "../components/MovieList";
 import MovieModal from "../components/Modal/MovieModal";

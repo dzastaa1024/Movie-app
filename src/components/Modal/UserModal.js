@@ -13,7 +13,7 @@ export default class MovieModal extends Component {
           <Icon>
             <UserDetail />
           </Icon>
-          <Name username>John Smith</Name>
+          <Name username>Name Surname</Name>
         </TopContent>
         <ButtomContent>
           <List>
@@ -82,7 +82,7 @@ const Name = styled.a`
   color: #c7b511;
   font-size: 2rem;
 
-  ${props =>
+  ${(props) =>
     props.username &&
     css`
       font-size: 3rem;

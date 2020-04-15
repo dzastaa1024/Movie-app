@@ -6,21 +6,89 @@ export default class SignUpForm extends React.Component {
     name: "",
     surname: "",
     email: "",
+    phone: "",
     dateOfBirth: "",
     gender: "female",
+    errors: [],
   };
 
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
+      errors: [],
     });
   };
 
+  isFormValid = () => {
+    const errors = [];
+
+    if (this.isFieldEmpty()) {
+      errors.push({ message: "Fill in the empty fields. " });
+    }
+
+    if (this.isEmailValid()) {
+      errors.push({ message: "Your email is incorrect" });
+    }
+
+    if (this.isPhoneValid()) {
+      errors.push({
+        message:
+          "Your phone is incorrect. Must contain at least 4 characters but no more than 12 characters. ",
+      });
+    }
+
+    if (errors.length) {
+      this.setState({
+        errors: errors,
+      });
+      return;
+    }
+    return true;
+  };
+
+  isFieldEmpty = () => {
+    const { name, surname, email, phone, dateOfBirth, gender } = this.state;
+    return (
+      !name.length ||
+      !surname.length ||
+      !email.length ||
+      !phone.length ||
+      !dateOfBirth.length ||
+      !gender.length
+    );
+  };
+
+  isEmailValid = () => {
+    return !this.state.email.includes("@");
+  };
+
+  isPhoneValid = () => {
+    return this.state.phone.length < 4 || this.state.phone.length > 12;
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    const isValid = this.isFormValid();
+
+    if (!isValid) {
+      return;
+    }
+  };
+
   render() {
-    const { name, surname, email, dateOfBirth, gender } = this.state;
+    const {
+      name,
+      surname,
+      email,
+      phone,
+      dateOfBirth,
+      gender,
+      errors,
+    } = this.state;
     return (
       <>
-        <Wrapper>
+        <Wrapper onSubmit={this.handleSubmit}>
           <InputWrapper>
             <Label htmlFor="name">Name</Label>
             <Input
@@ -69,6 +137,17 @@ export default class SignUpForm extends React.Component {
             />
           </InputWrapper>
 
+          <InputWrapper>
+            <Label htmlFor="phone">Phone</Label>
+            <DateOfBirth
+              value={phone}
+              type="phone"
+              name="phone"
+              id="phone"
+              onChange={this.handleChange}
+            />
+          </InputWrapper>
+
           <InputWrapper radiobtn>
             <Label htmlFor="male">
               Male
@@ -100,6 +179,10 @@ export default class SignUpForm extends React.Component {
           </Label>
           <SubmitBtn>Submit</SubmitBtn>
         </Wrapper>
+        {errors.length > 0 &&
+          errors.map((error) => (
+            <NameOfError key={error.message}> {error.message}</NameOfError>
+          ))}
       </>
     );
   }
@@ -186,3 +269,5 @@ const SubmitBtn = styled.button`
   bottom: 3%;
   left: 44%;
 `;
+
+const NameOfError = styled.p``;

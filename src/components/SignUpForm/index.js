@@ -20,6 +20,16 @@ export default class SignUpForm extends React.Component {
     });
   };
 
+  handleFormSubmit = () => {
+    const data = { ...this.state };
+
+    const addItemToLocalStorage = (name, value) => {
+      return localStorage.setItem(name, JSON.stringify(value));
+    };
+
+    addItemToLocalStorage("data", data);
+  };
+
   isFormValid = () => {
     const errors = [];
 
@@ -71,9 +81,11 @@ export default class SignUpForm extends React.Component {
     e.preventDefault();
     const isValid = this.isFormValid();
 
+    console.log(isValid);
     if (!isValid) {
       return;
     }
+    this.handleFormSubmit();
   };
 
   render() {

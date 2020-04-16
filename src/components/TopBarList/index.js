@@ -16,6 +16,14 @@ export default class TopBarList extends Component {
     isModal: false,
   };
 
+  componentDidMount() {
+    const newState = localStorage.getItem("data");
+    const parseNewState = JSON.parse(newState);
+    this.setState({
+      parseData: parseNewState,
+    });
+  }
+
   closeModal = () => {
     this.setState({
       isModal: false,
@@ -43,13 +51,23 @@ export default class TopBarList extends Component {
               </MenuItem>
             </MenuItemNavLink>
           ))}
-          <MenuItem>
-            <Picture>
-              <UserIcon onClick={this.handleClick} />
-            </Picture>
-          </MenuItem>
+          {this.props.parseData ? (
+            <MenuItem>
+              <Picture>
+                <UserIcon onClick={this.handleClick} />
+              </Picture>
+            </MenuItem>
+          ) : (
+            <NavLink to="/SignUpForm">Sign Up</NavLink>
+          )}
         </Menu>
-        {this.state.isModal && <UserModal close={this.closeModal} />}
+
+        {this.state.isModal && (
+          <UserModal
+            close={this.closeModal}
+            userName={this.props.parseData.name}
+          />
+        )}
       </>
     );
   }
@@ -86,3 +104,5 @@ const UserIcon = styled(User)`
   color: lightgray;
   cursor: pointer;
 `;
+
+///

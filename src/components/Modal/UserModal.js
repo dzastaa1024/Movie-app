@@ -7,13 +7,14 @@ import { Link } from "react-router-dom";
 
 export default class MovieModal extends Component {
   renderContent() {
+    const { userName } = this.props;
     return (
       <Wrapper>
         <TopContent>
           <Icon>
             <UserDetail />
           </Icon>
-          <Name username>Name Surname</Name>
+          <Name username> Hello, {userName} </Name>
         </TopContent>
         <ButtomContent>
           <List>
@@ -28,12 +29,12 @@ export default class MovieModal extends Component {
               </Link>
             </Item>
             <Item>
-              <Link to={"/signupform"} onClick={this.props.close}>
+              <Link to={"/accountsettings"} onClick={this.props.close}>
                 <ItemWrapper>
                   <IconWrapper>
                     <ListIcon as={heroiconsSolid.Cog} />
                   </IconWrapper>
-                  <Name>Sign Up</Name>
+                  <Name>Settings accounts</Name>
                 </ItemWrapper>
               </Link>
             </Item>

@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-export default class SignUpForm extends React.Component {
+export default class UserForm extends React.Component {
   state = {
     name: "",
     surname: "",
@@ -13,22 +13,6 @@ export default class SignUpForm extends React.Component {
     errors: [],
   };
 
-  componentDidMount() {
-    const newState = localStorage.getItem("data");
-    const parseNewState = JSON.parse(newState);
-
-    console.log("moja data", newState);
-    this.setState({
-      name: parseNewState.name,
-      surname: parseNewState.surname,
-      email: parseNewState.email,
-      phone: parseNewState.phone,
-      dateOfBirth: parseNewState.dateOfBirth,
-      gender: parseNewState.gender,
-      status: parseNewState.status,
-    });
-  }
-
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -39,11 +23,7 @@ export default class SignUpForm extends React.Component {
   handleFormSubmit = () => {
     const { errors, ...data } = this.state;
 
-    const addItemToLocalStorage = (name, value) => {
-      return localStorage.setItem(name, JSON.stringify(value));
-    };
-
-    addItemToLocalStorage("data", data);
+    this.props.saveUser(data);
   };
 
   isFormValid = () => {
@@ -230,14 +210,14 @@ const Wrapper = styled.div`
   margin-top: 10rem;
   border-top-left-radius: 40px;
   width: calc(100% - 2 * 200px);
-  height: calc(100% - 1 * 100px);
+  height: 100%;
   padding: 5rem;
 `;
 
 const Form = styled.form`
   display: grid;
   grid-gap: 5rem;
-  grid-column-gap: 10rem;
+  grid-column-gap: 3rem;
   grid-template-columns: repeat(auto-fit, minmax(24rem, 3fr));
   margin-bottom: 3rem;
 `;

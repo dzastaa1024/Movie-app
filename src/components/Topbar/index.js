@@ -6,7 +6,7 @@ import * as boxiconsSolid from "@styled-icons/boxicons-solid";
 
 export default class Topbar extends React.Component {
   render() {
-    const { handleChange, keyword } = this.props;
+    const { handleChange, keyword, parseData } = this.props;
     return (
       <Wrapper>
         <LeftWrapper>
@@ -23,7 +23,7 @@ export default class Topbar extends React.Component {
           />
         </MiddleWrapper>
         <RightWrapper>
-          <TopBarList />
+          <TopBarList parseData={parseData} />
         </RightWrapper>
       </Wrapper>
     );

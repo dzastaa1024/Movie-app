@@ -1,68 +1,74 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+Run the application using:
 
-### `yarn start`
+```bash
+yarn start
+```
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Layout
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+The page consists of a top bar with navigation. Right and left sidebar.
+The right sidebar is responsible for filters, left display upcoming movies. 
 
-### `yarn test`
+Inside there is a list with dynamically downloaded movies.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![image](zdj6.png)
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+All components are styled using styled-components.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Fetching data
 
-### `yarn eject`
+I used Fetch in order to get data from API. I used API from The Movie Database (TMDb). 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+I used the couple's endpoints of data.
+ 
+For displaying movies on the main page - I use data that represents the most popular and top-rated last week's movies, which can be viewed using the horizontal slider.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![image](zdj1.png)
+![image](zdj2.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Another endpoint is all movies and Tv shows, that the user can search by keyword.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![image](zdj3.png)
 
-## Learn More
+In the right sidebar, I used data that shows upcoming movies.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![image](zdj4.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Subpage called 'TVShows' - the most popular tv shows are shown by default, it is also possible to search for tv shows by keyword in the database with all tv shows.
 
-### Code Splitting
+Similarly, in the case of sub-called 'Movies'
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
+I also fetch data containing movie genres and foreign languages.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+![image](zdj5.png)
 
-### Making a Progressive Web App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-### Advanced Configuration
+## Key Functionality
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+One of the key features is to search all movies and tv shows by keyword on the main page. 
 
-### Deployment
+On the Movies and TV shows subpage, this functionality is also implemented, but you can only search for one type here.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Each movie is clickable and displays a modal with description and the ability to add it to the watch list.
 
-### `yarn build` fails to minify
+![image](zdj7.png)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+There is also a second type of modal on the page, which allows moving the user to the login page (if he is not logged in yet) or account editing (if he is already logged in) and the watch list.
+
+![image](zdj8.png)
+
+In the application, I implemented a simple login system using local Storage.
+To log in to the application is needed to complete the form that is valid. 
+
+![image](zdj9.png)
+
+Each subpage uses filters, you can filter movies by genres and languages.
+
+![image](zdj10.png)

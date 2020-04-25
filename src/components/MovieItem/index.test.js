@@ -39,6 +39,7 @@ describe("MovieItem", () => {
   it("should not render ReleaseDate if sidebarNews is not passed and render Average", () => {
     const wrapper = shallow(<MovieItem {...initProps} sidebarNews={false} />);
     const ReleaseDate = wrapper.find("ReleaseDate");
+    const Average = wrapper.find("Average");
 
     expect(ReleaseDate).toHaveLength(0);
     expect(Average).toHaveLength(1);

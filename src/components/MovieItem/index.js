@@ -8,16 +8,15 @@ const MovieItem = ({ movie, sidebarNews, handleClick, slide }) => {
     <Item slide={slide} onClick={() => handleClick(movie)}>
       <Image src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} />
       <Title sidebarNews>{movie.title}</Title>
-      {!sidebarNews && (
+      {sidebarNews ? (
+        <ReleaseDate sidebarNews={sidebarNews}>
+          {movie.release_date}
+        </ReleaseDate>
+      ) : (
         <Average>
           {" "}
           <GoldStar /> {movie.vote_average}
         </Average>
-      )}
-      {sidebarNews && (
-        <ReleaseDate sidebarNews={sidebarNews}>
-          {movie.release_date}
-        </ReleaseDate>
       )}
     </Item>
   );
@@ -79,3 +78,7 @@ const GoldStar = styled(Star)`
   color: gold;
   width: 1.5rem;
 `;
+
+Item.displayName = "Item";
+ReleaseDate.displayName = "ReleaseDate";
+Average.displayName = "Average";

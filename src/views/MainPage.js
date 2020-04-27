@@ -141,6 +141,7 @@ export default class MainPage extends Component {
               handleSubmit={this.props.handleSubmit}
             />
           )}
+          {isAnyFilterActive && <Text>Start typing...</Text>}
         </Scroll>
       </Wrapper>
     );
@@ -157,12 +158,6 @@ export const Wrapper = styled.div`
   min-height: 100%;
 `;
 
-// height: calc(100% - 100px);
-
-// padding: 2rem;
-// background-color: #18171f;
-// margin-left: 20rem;
-// margin-top: 10rem;
-// border-top-left-radius: 40px;
-// width: calc(100% - 2 * 200px);
-// min-height: 100%;
+const Text = styled.p`
+font-size: 
+`;

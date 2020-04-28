@@ -77,3 +77,5 @@ const CameraIcon = styled(boxiconsSolid.CameraMovie)`
   height: 6rem;
   color: #ecff34;
 `;
+
+Input.displayName = "input";

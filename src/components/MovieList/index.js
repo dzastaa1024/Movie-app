@@ -9,27 +9,20 @@ export default class MovieList extends React.Component {
 
     return (
       <Wrapper>
-        {allMovies && allMovies.length > 0 && (
-          <>
-            <Title sidebarNews={sidebarNews}>Results</Title>
-            <List sidebarNews={sidebarNews}>
-              {allMovies.map((movie) => {
-                return (
-                  <MovieItem
-                    movie={movie}
-                    key={movie.id}
-                    handleClick={handleClick}
-                    sidebarNews={sidebarNews}
-                  />
-                );
-              })}
-            </List>
-          </>
-        )}
-
-        {allMovies && allMovies.length > 0 && !sidebarNews && (
-          <Button handleLoadMore={handleLoadMore} />
-        )}
+        <Title sidebarNews={sidebarNews}>Results</Title>
+        <List sidebarNews={sidebarNews}>
+          {allMovies.map((movie) => {
+            return (
+              <MovieItem
+                movie={movie}
+                key={movie.id}
+                handleClick={handleClick}
+                sidebarNews={sidebarNews}
+              />
+            );
+          })}
+        </List>
+        {!sidebarNews && <Button handleLoadMore={handleLoadMore} />}
       </Wrapper>
     );
   }
@@ -69,3 +62,6 @@ const Title = styled.p`
        display: none;
     `}
 `;
+
+MovieItem.displayName = "MovieItem";
+Button.displayName = "Button";

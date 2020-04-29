@@ -1,11 +1,6 @@
 import React from "react";
-import Adapter from "enzyme-adapter-react-16";
-import { shallow, configure } from "enzyme";
-import toJson from "enzyme-to-json";
-import "jest-styled-components";
+import { shallow } from "enzyme";
 import Topbar from "./";
-
-configure({ adapter: new Adapter() });
 
 describe("TopBar", () => {
   it("check if handleChange is called", () => {
@@ -25,7 +20,6 @@ describe("TopBar", () => {
 
     const Input = wrapper.find("input");
     Input.simulate("change");
-    expect(handleChange).toHaveBeenCalled();
     expect(Input.props().value).toBe("love");
   });
 });

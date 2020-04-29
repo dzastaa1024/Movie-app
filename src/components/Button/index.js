@@ -20,3 +20,5 @@ const LoadBtn = styled.button`
   margin: 0 auto;
   display: block;
 `;
+
+LoadBtn.displayName = "LoadBtn";
